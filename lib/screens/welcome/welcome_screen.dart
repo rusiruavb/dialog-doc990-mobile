@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dialog_doc990_mobile/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,7 +13,12 @@ class _SplashScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2), () => {print('Landing screen done')});
+    Timer(
+        Duration(seconds: 2),
+        () => {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()))
+            });
   }
 
   @override
