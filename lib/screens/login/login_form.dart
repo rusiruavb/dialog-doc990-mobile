@@ -10,10 +10,17 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   String phoneNumber;
   String password;
+  final _formKey = GlobalKey<FormState>();
   _LoginFormState({
     this.phoneNumber,
     this.password,
   });
+
+  void submitForm() {
+    if (_formKey.currentState.validate()) {
+      print('Sign Up clicked ' + phoneNumber + ' ' + password);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,55 +35,58 @@ class _LoginFormState extends State<LoginForm> {
       ),
       child: Padding(
         padding: EdgeInsets.only(top: 30, left: 25, right: 25),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Sign Up',
-              style: TextStyle(
-                fontFamily: 'Larsseit',
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Sign Up',
+                style: TextStyle(
+                  fontFamily: 'Larsseit',
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(
-              height: size.height * 0.025,
-            ),
-            RoundedTextFeild(
-              isPassword: false,
-              isNumber: true,
-              isPhoneNumber: true,
-              text: 'Phone Number',
-              onChange: (text) {
-                phoneNumber = text;
-              },
-            ),
-            RoundedTextFeild(
-              isPassword: true,
-              isNumber: false,
-              isPhoneNumber: false,
-              text: 'Password',
-              onChange: (text) {
-                password = text;
-              },
-            ),
-            SizedBox(
-              height: size.height * 0.025,
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: RoundedButton(
-                text: 'SIGN UP',
-                action: () {
-                  print('Sign Up clicked ' + phoneNumber + ' ' + password);
+              SizedBox(
+                height: size.height * 0.025,
+              ),
+              RoundedTextFeild(
+                isRequiredFeild: true,
+                isPassword: false,
+                isNumber: true,
+                isPhoneNumber: true,
+                text: 'Phone Number',
+                onChange: (text) {
+                  phoneNumber = text;
                 },
-                height: size.height * 0.072,
-                width: size.width * 0.39,
-                icon: Icons.near_me,
               ),
-            )
-          ],
+              RoundedTextFeild(
+                isRequiredFeild: true,
+                isPassword: true,
+                isNumber: false,
+                isPhoneNumber: false,
+                text: 'Password',
+                onChange: (text) {
+                  password = text;
+                },
+              ),
+              SizedBox(
+                height: size.height * 0.010,
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: RoundedButton(
+                  text: 'SIGN UP',
+                  action: submitForm,
+                  height: size.height * 0.072,
+                  width: size.width * 0.39,
+                  icon: Icons.near_me,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

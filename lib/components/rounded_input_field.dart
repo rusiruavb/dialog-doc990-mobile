@@ -6,6 +6,7 @@ class RoundedTextFeild extends StatefulWidget {
   final String text;
   final bool isNumber;
   final bool isPhoneNumber;
+  final bool isRequiredFeild;
   const RoundedTextFeild({
     Key key,
     this.onChange,
@@ -13,6 +14,7 @@ class RoundedTextFeild extends StatefulWidget {
     this.isNumber,
     this.text,
     this.isPhoneNumber = false,
+    this.isRequiredFeild,
   }) : super(key: key);
   @override
   _RoundedTextFeildState createState() => _RoundedTextFeildState(
@@ -21,6 +23,7 @@ class RoundedTextFeild extends StatefulWidget {
         isPhoneNumber: isPhoneNumber,
         onChange: onChange,
         text: text,
+        isRequiredFeild: isRequiredFeild,
       );
 }
 
@@ -30,6 +33,8 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
   final String text;
   final bool isNumber;
   final bool isPhoneNumber;
+  final bool isRequiredFeild;
+  bool _isFieldValid;
   bool _isObscure = true;
   _RoundedTextFeildState({
     Key key,
@@ -38,6 +43,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
     this.isNumber,
     this.text,
     this.isPhoneNumber = false,
+    this.isRequiredFeild,
   });
   @override
   Widget build(BuildContext context) {
@@ -59,7 +65,20 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
             height: size.height * 0.005,
           ),
           TextFieldContainer(
-            child: TextField(
+            child: TextFormField(
+              validator: (value) {
+                if (value.isEmpty) {
+                  setState(() {
+                    _isFieldValid = false;
+                  });
+                  return null;
+                } else {
+                  setState(() {
+                    _isFieldValid = true;
+                  });
+                  return null;
+                }
+              },
               obscureText: isPassword ? _isObscure : false,
               maxLength: isPhoneNumber ? 10 : 200,
               keyboardType:
@@ -85,8 +104,23 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
               ),
             ),
           ),
+          isRequiredFeild != null &&
+                  isRequiredFeild &&
+                  _isFieldValid != null &&
+                  !_isFieldValid
+              ? Padding(
+                  padding: EdgeInsets.only(left: 15),
+                  child: Text(
+                    text + ' is required!',
+                    style: TextStyle(
+                      color: Colors.red[800],
+                      fontFamily: 'Larsseit',
+                    ),
+                  ),
+                )
+              : Text(''),
           SizedBox(
-            height: size.height * 0.025,
+            height: size.height * 0.010,
           ),
         ],
       ),
