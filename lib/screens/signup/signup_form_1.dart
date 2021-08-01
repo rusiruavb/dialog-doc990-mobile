@@ -1,17 +1,18 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
+import 'package:dialog_doc990_mobile/components/rounded_dropdown_feild.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
 import 'package:flutter/material.dart';
 
-class LoginForm extends StatefulWidget {
+class SignUpForm1 extends StatefulWidget {
   @override
-  _LoginFormState createState() => _LoginFormState();
+  _SignUpForm1State createState() => _SignUpForm1State();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SignUpForm1State extends State<SignUpForm1> {
   String phoneNumber;
   String password;
   final _formKey = GlobalKey<FormState>();
-  _LoginFormState({
+  _SignUpForm1State({
     this.phoneNumber,
     this.password,
   });
@@ -25,6 +26,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Container(
       height: size.height * 0.5,
       width: size.width,
@@ -52,14 +54,11 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 height: size.height * 0.025,
               ),
-              RoundedTextFeild(
-                isRequiredFeild: true,
-                isPassword: false,
-                isNumber: true,
-                isPhoneNumber: true,
-                text: 'Your Phone',
+              RoundedDropDownFeild(
+                text: 'Your Country',
+                isRequiredFeild: false,
                 onChange: (text) {
-                  phoneNumber = text;
+                  print('this is test');
                 },
               ),
               RoundedTextFeild(
