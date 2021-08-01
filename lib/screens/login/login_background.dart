@@ -19,6 +19,7 @@ class LoginBackground extends StatelessWidget {
             child: Padding(
               child: Image.asset(
                 'assets/images/login_top.png',
+                scale: 3,
               ),
               padding: EdgeInsets.only(top: 50, right: 8),
             ),

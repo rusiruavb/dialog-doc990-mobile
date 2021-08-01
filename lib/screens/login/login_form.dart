@@ -69,8 +69,11 @@ class _LoginFormState extends State<LoginForm> {
               child: RoundedButton(
                 text: 'SIGN UP',
                 action: () {
-                  print('Sign Up clicked' + phoneNumber + ' ' + password);
+                  print('Sign Up clicked ' + phoneNumber + ' ' + password);
                 },
+                height: size.height * 0.072,
+                width: size.width * 0.39,
+                icon: Icons.near_me,
               ),
             )
           ],

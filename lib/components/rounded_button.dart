@@ -4,20 +4,30 @@ class RoundedButton extends StatelessWidget {
   final String text;
   final Function action;
   final Color color = Colors.red;
+  final double height;
+  final double width;
+  final IconData icon;
   final Color textColor = Colors.white;
 
-  const RoundedButton({Key key, this.text, this.action}) : super(key: key);
+  const RoundedButton({
+    Key key,
+    this.text,
+    this.action,
+    this.height,
+    this.width,
+    this.icon,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 0),
-      height: MediaQuery.of(context).size.height * 0.072,
-      width: MediaQuery.of(context).size.width * 0.4,
+      height: height,
+      width: width,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
         child: FlatButton(
-          padding: EdgeInsets.symmetric(vertical: 18, horizontal: 20),
+          padding: EdgeInsets.symmetric(vertical: 17.5, horizontal: 22),
           color: color,
           onPressed: action,
           child: Row(
@@ -33,10 +43,13 @@ class RoundedButton extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              Icon(
-                Icons.near_me,
-                color: Colors.white,
-                size: 28,
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Icon(
+                  icon,
+                  color: Colors.white,
+                  size: 25,
+                ),
               )
             ],
           ),
