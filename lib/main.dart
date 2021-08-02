@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/screens/home/home_screen.dart';
 import 'package:dialog_doc990_mobile/screens/signup/signup_screen_1.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class DocApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignUpScreen1(),
+      home: HomeScreen(),
     );
   }
 }
