@@ -56,9 +56,10 @@ class _SignUpForm1State extends State<SignUpForm1> {
               ),
               RoundedDropDownFeild(
                 text: 'Your Country',
-                isRequiredFeild: false,
+                isRequiredFeild: true,
+                isCountry: true,
                 onChange: (text) {
-                  print('this is test');
+                  print('this is test' + text);
                 },
               ),
               RoundedTextFeild(
