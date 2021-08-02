@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class SignUpBackground extends StatelessWidget {
+class SignUpBackground1 extends StatelessWidget {
   final Widget child;
-  const SignUpBackground({
+  const SignUpBackground1({
     this.child,
   });
 

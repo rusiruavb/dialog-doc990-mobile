@@ -49,8 +49,8 @@ class _RoundedDropDownFeildState extends State<RoundedDropDownFeild> {
             text,
             style: TextStyle(
               fontFamily: 'Larsseit',
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
             ),
             textAlign: TextAlign.left,
           ),

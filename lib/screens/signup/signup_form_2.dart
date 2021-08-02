@@ -1,34 +1,32 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
+import 'package:dialog_doc990_mobile/components/rounded_dropdown_feild.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
-import 'package:dialog_doc990_mobile/screens/signup/signup_screen_2.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 
-class SignUpForm1 extends StatefulWidget {
+class SignUpForm2 extends StatefulWidget {
   @override
-  _SignUpForm1State createState() => _SignUpForm1State();
+  _SignUpForm2State createState() => _SignUpForm2State();
 }
 
-class _SignUpForm1State extends State<SignUpForm1> {
-  String phoneNumber;
-  String emailAddress;
+class _SignUpForm2State extends State<SignUpForm2> {
+  String title;
+  String name;
+  String country;
+  String nic;
+  String password;
   final _formKey = GlobalKey<FormState>();
-  _SignUpForm1State({
-    this.phoneNumber,
-    this.emailAddress,
+
+  _SignUpForm2State({
+    this.title,
+    this.name,
+    this.country,
+    this.nic,
+    this.password,
   });
 
-  void submitAndNavigateTo2ndScreen() {
-    if (_formKey.currentState.validate() &&
-        phoneNumber != null &&
-        phoneNumber != null) {
-      Navigator.push(
-        context,
-        PageTransition(
-          child: SignUpScreen2(),
-          type: PageTransitionType.rightToLeft,
-        ),
-      );
+  void validateAndSubmitForm() {
+    if (_formKey.currentState.validate()) {
+      print('Form validated');
     }
   }
 
@@ -37,7 +35,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.5,
+      height: size.height * 0.92,
       width: size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -52,7 +50,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Contact Info',
+                'Personal Info',
                 style: TextStyle(
                   fontFamily: 'Larsseit',
                   fontSize: 30,
@@ -63,24 +61,50 @@ class _SignUpForm1State extends State<SignUpForm1> {
               SizedBox(
                 height: size.height * 0.025,
               ),
+              RoundedDropDownFeild(
+                text: 'Your Country',
+                isCountry: true,
+                isRequiredFeild: true,
+                onChange: (value) {
+                  print('Country ' + value);
+                },
+              ),
+              RoundedDropDownFeild(
+                isRequiredFeild: true,
+                isCountry: false,
+                text: 'Your Title',
+                onChange: (value) {
+                  print('Title ' + value);
+                },
+              ),
               RoundedTextFeild(
                 isRequiredFeild: true,
                 isPassword: false,
                 isNumber: false,
                 isPhoneNumber: false,
-                text: 'Email Address',
+                text: 'Your Name',
                 onChange: (text) {
-                  emailAddress = text;
+                  print(text);
                 },
               ),
               RoundedTextFeild(
                 isRequiredFeild: true,
                 isPassword: false,
                 isNumber: true,
-                isPhoneNumber: true,
-                text: 'Your Phone Number',
+                isPhoneNumber: false,
+                text: 'NIC/ Passport Number',
                 onChange: (text) {
-                  phoneNumber = text;
+                  print(text);
+                },
+              ),
+              RoundedTextFeild(
+                isRequiredFeild: true,
+                isPassword: true,
+                isNumber: false,
+                isPhoneNumber: false,
+                text: 'Password',
+                onChange: (text) {
+                  print(text);
                 },
               ),
               SizedBox(
@@ -89,11 +113,11 @@ class _SignUpForm1State extends State<SignUpForm1> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: RoundedButton(
-                  text: 'NEXT',
-                  action: submitAndNavigateTo2ndScreen,
+                  text: 'SUBMIT',
+                  action: validateAndSubmitForm,
                   height: size.height * 0.072,
-                  width: size.width * 0.34,
-                  icon: Icons.arrow_forward,
+                  width: size.width * 0.4,
+                  icon: Icons.send,
                 ),
               )
             ],

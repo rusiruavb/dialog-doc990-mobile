@@ -56,8 +56,8 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
             text,
             style: TextStyle(
               fontFamily: 'Larsseit',
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
             ),
             textAlign: TextAlign.left,
           ),

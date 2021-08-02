@@ -60,7 +60,7 @@ class _RoundedButtonState extends State<RoundedButton> {
           child: Row(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(right: 10),
+                padding: EdgeInsets.only(right: 13),
                 child: Text(
                   text,
                   style: TextStyle(
@@ -70,14 +70,11 @@ class _RoundedButtonState extends State<RoundedButton> {
                       fontWeight: FontWeight.bold),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 10),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 25,
-                ),
-              )
+              Icon(
+                icon,
+                color: Colors.white,
+                size: 25,
+              ),
             ],
           ),
         ),
