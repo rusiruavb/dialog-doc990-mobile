@@ -1,5 +1,6 @@
 import 'package:dialog_doc990_mobile/screens/home/home_body_background.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_navigation_menu.dart';
+import 'package:dialog_doc990_mobile/screens/home/home_screen_content.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,14 +12,19 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       key: _scaffoldKey,
-      drawer: Drawer(
-        elevation: 0.0,
-        child: HomeNavigationMenu(),
+      drawer: Container(
+        width: size.width * 0.6,
+        child: Drawer(
+          elevation: 0.0,
+          child: HomeNavigationMenu(),
+        ),
       ),
       body: Stack(
         children: <Widget>[
-          HomeBodyBackground(
-            child: Text('This is test'),
+          SingleChildScrollView(
+            child: HomeBodyBackground(
+              child: HomeScreenContent(),
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 30, left: 0),

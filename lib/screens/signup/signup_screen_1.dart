@@ -8,20 +8,23 @@ class SignUpScreen1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       key: _scaffoldKey,
-      drawer: Drawer(
-        elevation: 0.0,
-        child: HomeNavigationMenu(),
+      drawer: Container(
+        width: size.width * 0.6,
+        child: Drawer(
+          elevation: 0.0,
+          child: HomeNavigationMenu(),
+        ),
       ),
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            child: SafeArea(
-              child: Container(
-                child: SignUpBackground1(
-                  child: SignUpForm1(),
-                ),
+            child: Container(
+              child: SignUpBackground1(
+                child: SignUpForm1(),
               ),
             ),
           ),

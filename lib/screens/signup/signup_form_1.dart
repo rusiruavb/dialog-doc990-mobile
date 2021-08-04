@@ -95,8 +95,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
                   text: 'NEXT',
                   action: submitAndNavigateTo2ndScreen,
                   height: size.height * 0.072,
-                  width: size.width * 0.34,
-                  icon: Icons.arrow_forward,
+                  width: size.width * 0.28,
                 ),
               )
             ],
