@@ -1,5 +1,6 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:dialog_doc990_mobile/screens/signup/signup_screen_2.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -12,14 +13,15 @@ class SignUpForm1 extends StatefulWidget {
 class _SignUpForm1State extends State<SignUpForm1> {
   String phoneNumber;
   String emailAddress;
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _signUpFrom1Key =
+      GlobalKey<FormState>(debugLabel: '_signFrom1Key');
   _SignUpForm1State({
     this.phoneNumber,
     this.emailAddress,
   });
 
   void submitAndNavigateTo2ndScreen() {
-    if (_formKey.currentState.validate() &&
+    if (_signUpFrom1Key.currentState.validate() &&
         phoneNumber != null &&
         phoneNumber != null) {
       Navigator.push(
@@ -37,6 +39,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
     final size = MediaQuery.of(context).size;
 
     return Container(
+      key: WidgetKeys.signUpForm1Key,
       height: size.height * 0.5,
       width: size.width,
       decoration: BoxDecoration(
@@ -47,7 +50,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
       child: Padding(
         padding: EdgeInsets.only(top: 30, left: 25, right: 25),
         child: Form(
-          key: _formKey,
+          key: _signUpFrom1Key,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

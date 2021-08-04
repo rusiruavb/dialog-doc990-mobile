@@ -1,5 +1,6 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
@@ -10,7 +11,8 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   String phoneNumber;
   String password;
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey =
+      GlobalKey<FormState>(debugLabel: '_loginFormKey');
   _LoginFormState({
     this.phoneNumber,
     this.password,
@@ -26,6 +28,7 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
+      key: WidgetKeys.loginFormKey,
       height: size.height * 0.5,
       width: size.width,
       decoration: BoxDecoration(

@@ -1,6 +1,7 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_dropdown_feild.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
 class SignUpForm2 extends StatefulWidget {
@@ -14,7 +15,8 @@ class _SignUpForm2State extends State<SignUpForm2> {
   String country;
   String nic;
   String password;
-  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _signUpForm2Key =
+      GlobalKey<FormState>(debugLabel: '_signFrom2Key');
 
   _SignUpForm2State({
     this.title,
@@ -25,7 +27,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
   });
 
   void validateAndSubmitForm() {
-    if (_formKey.currentState.validate()) {
+    if (_signUpForm2Key.currentState.validate()) {
       print('Form validated');
     }
   }
@@ -35,6 +37,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
     final size = MediaQuery.of(context).size;
 
     return Container(
+      key: WidgetKeys.signUpForm2Key,
       height: size.height * 0.92,
       width: size.width,
       decoration: BoxDecoration(
@@ -45,7 +48,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
       child: Padding(
         padding: EdgeInsets.only(top: 30, left: 25, right: 25),
         child: Form(
-          key: _formKey,
+          key: _signUpForm2Key,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

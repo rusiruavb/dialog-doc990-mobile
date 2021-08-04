@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
 class SignUpBackground1 extends StatelessWidget {
@@ -10,6 +11,7 @@ class SignUpBackground1 extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
+      key: WidgetKeys.signUpScreenBackground1Key,
       color: Colors.red[900],
       height: size.height,
       width: size.width,
@@ -24,7 +26,7 @@ class SignUpBackground1 extends StatelessWidget {
                 scale: 3.3,
               ),
               padding: EdgeInsets.only(
-                top: 50,
+                top: 30,
                 left: 20,
               ),
             ),
