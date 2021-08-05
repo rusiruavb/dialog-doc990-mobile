@@ -1,6 +1,7 @@
 import 'package:dialog_doc990_mobile/screens/home/home_body_background.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_navigation_menu.dart';
-import 'package:dialog_doc990_mobile/screens/home/home_screen_content.dart';
+import 'package:dialog_doc990_mobile/screens/home/home_screen_covid_content.dart';
+import 'package:dialog_doc990_mobile/screens/home/home_screen_service_content.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,7 +24,9 @@ class HomeScreen extends StatelessWidget {
         children: <Widget>[
           SingleChildScrollView(
             child: HomeBodyBackground(
-              child: HomeScreenContent(),
+              child: HomeScreenServiceContent(
+                child: HomeScreenCovidContent(),
+              ),
             ),
           ),
           Padding(
