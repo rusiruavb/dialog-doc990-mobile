@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/components/rounded_dropdown_feild.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
@@ -47,257 +48,21 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.white70, width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    elevation: 0,
-                    child: Container(
-                      child: Stack(
-                        children: <Widget>[
-                          Align(
-                            child: Image.asset(
-                              'assets/images/service_background.png',
-                              scale: 0.65,
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          Align(
-                            child: Container(
-                              width: 110.0,
-                              height: 110.0,
-                              alignment: Alignment.center,
-                              decoration: new BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/search_doctor.png'),
-                                    fit: BoxFit.fill),
-                              ),
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          Align(
-                            child: Padding(
-                              child: Text(
-                                'Channel Doctor',
-                                style: TextStyle(
-                                  fontFamily: 'Larsseit',
-                                  fontSize: 16,
-                                ),
-                              ),
-                              padding: EdgeInsets.only(bottom: 8),
-                            ),
-                            alignment: Alignment.bottomCenter,
-                          ),
-                        ],
-                      ),
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.30),
-                            spreadRadius: 0,
-                            blurRadius: 5,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                ServiceCard(
+                  image: 'assets/images/search_doctor.png',
+                  title: 'Channel Doctor',
                 ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.white70, width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    elevation: 0,
-                    child: Container(
-                      child: Stack(
-                        children: <Widget>[
-                          Align(
-                            child: Image.asset(
-                              'assets/images/service_background.png',
-                              scale: 0.7,
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          Align(
-                            child: Container(
-                              width: 100.0,
-                              height: 100.0,
-                              alignment: Alignment.center,
-                              decoration: new BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/user_channelling.png'),
-                                    fit: BoxFit.fill),
-                              ),
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          Align(
-                            child: Padding(
-                              child: Text(
-                                'My Channels',
-                                style: TextStyle(
-                                  fontFamily: 'Larsseit',
-                                  fontSize: 16,
-                                ),
-                              ),
-                              padding: EdgeInsets.only(bottom: 8),
-                            ),
-                            alignment: Alignment.bottomCenter,
-                          ),
-                        ],
-                      ),
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.30),
-                            spreadRadius: 0,
-                            blurRadius: 5,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                ServiceCard(
+                  image: 'assets/images/user_channelling.png',
+                  title: 'My Channels',
                 ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.white70, width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    elevation: 0,
-                    child: Container(
-                      child: Stack(
-                        children: <Widget>[
-                          Align(
-                            child: Image.asset(
-                              'assets/images/service_background.png',
-                              scale: 0.7,
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          Align(
-                            child: Container(
-                              width: 100.0,
-                              height: 100.0,
-                              alignment: Alignment.center,
-                              decoration: new BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/medicine.png'),
-                                    fit: BoxFit.fill),
-                              ),
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          Align(
-                            child: Padding(
-                              child: Text(
-                                'My Medicines',
-                                style: TextStyle(
-                                  fontFamily: 'Larsseit',
-                                  fontSize: 16,
-                                ),
-                              ),
-                              padding: EdgeInsets.only(bottom: 8),
-                            ),
-                            alignment: Alignment.bottomCenter,
-                          ),
-                        ],
-                      ),
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.30),
-                            spreadRadius: 0,
-                            blurRadius: 5,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                ServiceCard(
+                  image: 'assets/images/medicine.png',
+                  title: 'My Medicines',
                 ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.white70, width: 1),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    elevation: 0,
-                    child: Container(
-                      child: Stack(
-                        children: <Widget>[
-                          Align(
-                            child: Image.asset(
-                              'assets/images/service_background.png',
-                              scale: 0.7,
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          Align(
-                            child: Container(
-                              width: 100.0,
-                              height: 100.0,
-                              alignment: Alignment.center,
-                              decoration: new BoxDecoration(
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/money_refund.png'),
-                                    fit: BoxFit.fill),
-                              ),
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          Align(
-                            child: Padding(
-                              child: Text(
-                                'Refunds',
-                                style: TextStyle(
-                                  fontFamily: 'Larsseit',
-                                  fontSize: 16,
-                                ),
-                              ),
-                              padding: EdgeInsets.only(bottom: 8),
-                            ),
-                            alignment: Alignment.bottomCenter,
-                          ),
-                        ],
-                      ),
-                      width: 150,
-                      height: 150,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.30),
-                            spreadRadius: 0,
-                            blurRadius: 5,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                ServiceCard(
+                  image: 'assets/images/money_refund.png',
+                  title: 'Refunds',
                 ),
               ],
             ),
@@ -305,6 +70,84 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
         ),
         child
       ],
+    );
+  }
+}
+
+class ServiceCard extends StatelessWidget {
+  final String title;
+  final String image;
+
+  const ServiceCard({
+    Key key,
+    this.title,
+    this.image,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.white70, width: 1),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 0,
+        child: Container(
+          child: Stack(
+            children: <Widget>[
+              Align(
+                child: Image.asset(
+                  'assets/images/service_background.png',
+                  scale: 0.65,
+                ),
+                alignment: Alignment.center,
+              ),
+              Align(
+                child: Container(
+                  width: 110.0,
+                  height: 110.0,
+                  alignment: Alignment.center,
+                  decoration: new BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(image),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                alignment: Alignment.center,
+              ),
+              Align(
+                child: Padding(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontFamily: 'Larsseit',
+                      fontSize: 16,
+                    ),
+                  ),
+                  padding: EdgeInsets.only(bottom: 8),
+                ),
+                alignment: Alignment.bottomCenter,
+              ),
+            ],
+          ),
+          width: 150,
+          height: 150,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.30),
+                spreadRadius: 0,
+                blurRadius: 5,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
