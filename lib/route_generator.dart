@@ -10,11 +10,11 @@ class RouteGenerator {
 
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => new HomeScreen());
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       case '/signup':
-        return MaterialPageRoute(builder: (_) => new SignUpScreen1());
+        return MaterialPageRoute(builder: (_) => SignUpScreen1());
       case '/login':
-        return MaterialPageRoute(builder: (_) => new LoginScreen());
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       default:
         return _errorRoute();
     }

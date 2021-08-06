@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dialog_doc990_mobile/models/covid_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class HomeScreenCovidContent extends StatefulWidget {
   @override
@@ -39,12 +40,39 @@ class _HomeScreenCovidContentState extends State<HomeScreenCovidContent> {
         Align(
           child: Padding(
             child: Text(
-              'Covide Information',
+              'Covid Information 🇱🇰',
               style: TextStyle(
                 fontFamily: 'Larsseit',
-                fontSize: 25,
-                fontWeight: FontWeight.w600,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
               ),
+            ),
+            padding: EdgeInsets.only(left: 20),
+          ),
+          alignment: Alignment.topLeft,
+        ),
+        Align(
+          child: Padding(
+            child: FutureBuilder<CovidInfo>(
+              future: covidInfo,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  DateTime updatedAt =
+                      DateTime.parse(snapshot.data.lastUpdated);
+                  return Text(
+                    'Newest update ${DateFormat.yMMMMd('en_US').format(updatedAt)}',
+                    style: TextStyle(
+                      fontFamily: 'Larsseit',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
+                return Text('');
+              },
             ),
             padding: EdgeInsets.only(left: 20),
           ),
@@ -55,6 +83,7 @@ class _HomeScreenCovidContentState extends State<HomeScreenCovidContent> {
             left: 15,
             right: 15,
             top: 10,
+            bottom: 5,
           ),
           child: FutureBuilder<CovidInfo>(
             future: covidInfo,
@@ -99,6 +128,49 @@ class _HomeScreenCovidContentState extends State<HomeScreenCovidContent> {
               }
               return CircularProgressIndicator();
             },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            left: 15,
+            right: 15,
+            top: 10,
+            bottom: 10,
+          ),
+          child: Column(
+            children: <Widget>[
+              Align(
+                child: Padding(
+                  child: Text(
+                    'Symptomps',
+                    style: TextStyle(
+                      fontFamily: 'Larsseit',
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  padding: EdgeInsets.only(left: 5),
+                ),
+                alignment: Alignment.topLeft,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  CovidSymptompsCard(
+                    image: 'assets/images/covid_cough.png',
+                    title: 'Cough',
+                  ),
+                  CovidSymptompsCard(
+                    image: 'assets/images/covid_headache.png',
+                    title: 'Headache',
+                  ),
+                  CovidSymptompsCard(
+                    image: 'assets/images/covid_fever.png',
+                    title: 'Fever',
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ],
@@ -162,6 +234,84 @@ class CovidCounter extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class CovidSymptompsCard extends StatelessWidget {
+  final String title;
+  final String image;
+
+  const CovidSymptompsCard({
+    Key key,
+    this.title,
+    this.image,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(0),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Colors.white70, width: 1),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 0,
+        child: Container(
+          child: Stack(
+            children: <Widget>[
+              Align(
+                child: Image.asset(
+                  'assets/images/service_background.png',
+                  scale: 0.85,
+                ),
+                alignment: Alignment.center,
+              ),
+              Align(
+                child: Container(
+                  width: 55.0,
+                  height: 70.0,
+                  alignment: Alignment.center,
+                  decoration: new BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(image),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                alignment: Alignment.center,
+              ),
+              Align(
+                child: Padding(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontFamily: 'Larsseit',
+                      fontSize: 14,
+                    ),
+                  ),
+                  padding: EdgeInsets.only(bottom: 1),
+                ),
+                alignment: Alignment.bottomCenter,
+              ),
+            ],
+          ),
+          width: 110,
+          height: 110,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.30),
+                spreadRadius: 0,
+                blurRadius: 5,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

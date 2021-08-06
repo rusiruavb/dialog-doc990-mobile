@@ -17,6 +17,7 @@ dependencies:
   page_transition: ^2.0.2
   fluttertoast: ^8.0.8
   http: ^0.13.3
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:
