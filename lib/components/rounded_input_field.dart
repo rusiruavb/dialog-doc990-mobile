@@ -56,8 +56,8 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
             text,
             style: TextStyle(
               fontFamily: 'Larsseit',
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              fontWeight: FontWeight.normal,
             ),
             textAlign: TextAlign.left,
           ),
@@ -139,6 +139,7 @@ class TextFieldContainer extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 1),
       padding: EdgeInsets.symmetric(horizontal: 25, vertical: 3),
       width: size.width * 0.9,
+      height: 50,
       decoration: BoxDecoration(
           color: Colors.grey[300], borderRadius: BorderRadius.circular(30)),
       child: child,

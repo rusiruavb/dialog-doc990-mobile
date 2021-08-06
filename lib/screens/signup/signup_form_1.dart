@@ -1,34 +1,45 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
+import 'package:dialog_doc990_mobile/screens/signup/signup_screen_2.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
-class LoginForm extends StatefulWidget {
+class SignUpForm1 extends StatefulWidget {
   @override
-  _LoginFormState createState() => _LoginFormState();
+  _SignUpForm1State createState() => _SignUpForm1State();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _SignUpForm1State extends State<SignUpForm1> {
   String phoneNumber;
-  String password;
-  GlobalKey<FormState> _formKey =
-      GlobalKey<FormState>(debugLabel: '_loginFormKey');
-  _LoginFormState({
+  String emailAddress;
+  GlobalKey<FormState> _signUpFrom1Key =
+      GlobalKey<FormState>(debugLabel: '_signFrom1Key');
+  _SignUpForm1State({
     this.phoneNumber,
-    this.password,
+    this.emailAddress,
   });
 
-  void submitForm() {
-    if (_formKey.currentState.validate()) {
-      print('Sign Up clicked ' + phoneNumber + ' ' + password);
+  void submitAndNavigateTo2ndScreen() {
+    if (_signUpFrom1Key.currentState.validate() &&
+        phoneNumber != null &&
+        phoneNumber != null) {
+      Navigator.push(
+        context,
+        PageTransition(
+          child: SignUpScreen2(),
+          type: PageTransitionType.rightToLeft,
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Container(
-      key: WidgetKeys.loginFormKey,
+      key: WidgetKeys.signUpForm1Key,
       height: size.height * 0.5,
       width: size.width,
       decoration: BoxDecoration(
@@ -39,12 +50,12 @@ class _LoginFormState extends State<LoginForm> {
       child: Padding(
         padding: EdgeInsets.only(top: 30, left: 25, right: 25),
         child: Form(
-          key: _formKey,
+          key: _signUpFrom1Key,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Sign Up',
+                'Contact Info',
                 style: TextStyle(
                   fontFamily: 'Larsseit',
                   fontSize: 30,
@@ -58,21 +69,21 @@ class _LoginFormState extends State<LoginForm> {
               RoundedTextFeild(
                 isRequiredFeild: true,
                 isPassword: false,
-                isNumber: true,
-                isPhoneNumber: true,
-                text: 'Your Phone',
+                isNumber: false,
+                isPhoneNumber: false,
+                text: 'Email Address',
                 onChange: (text) {
-                  phoneNumber = text;
+                  emailAddress = text;
                 },
               ),
               RoundedTextFeild(
                 isRequiredFeild: true,
-                isPassword: true,
-                isNumber: false,
-                isPhoneNumber: false,
-                text: 'Password',
+                isPassword: false,
+                isNumber: true,
+                isPhoneNumber: true,
+                text: 'Your Phone Number',
                 onChange: (text) {
-                  password = text;
+                  phoneNumber = text;
                 },
               ),
               SizedBox(
@@ -81,11 +92,10 @@ class _LoginFormState extends State<LoginForm> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: RoundedButton(
-                  text: 'SIGN UP',
-                  action: submitForm,
+                  text: 'NEXT',
+                  action: submitAndNavigateTo2ndScreen,
                   height: size.height * 0.072,
-                  width: size.width * 0.39,
-                  icon: Icons.near_me,
+                  width: size.width * 0.28,
                 ),
               )
             ],

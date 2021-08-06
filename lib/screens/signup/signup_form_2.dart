@@ -1,35 +1,44 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
+import 'package:dialog_doc990_mobile/components/rounded_dropdown_feild.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
-class LoginForm extends StatefulWidget {
+class SignUpForm2 extends StatefulWidget {
   @override
-  _LoginFormState createState() => _LoginFormState();
+  _SignUpForm2State createState() => _SignUpForm2State();
 }
 
-class _LoginFormState extends State<LoginForm> {
-  String phoneNumber;
+class _SignUpForm2State extends State<SignUpForm2> {
+  String title;
+  String name;
+  String country;
+  String nic;
   String password;
-  GlobalKey<FormState> _formKey =
-      GlobalKey<FormState>(debugLabel: '_loginFormKey');
-  _LoginFormState({
-    this.phoneNumber,
+  GlobalKey<FormState> _signUpForm2Key =
+      GlobalKey<FormState>(debugLabel: '_signFrom2Key');
+
+  _SignUpForm2State({
+    this.title,
+    this.name,
+    this.country,
+    this.nic,
     this.password,
   });
 
-  void submitForm() {
-    if (_formKey.currentState.validate()) {
-      print('Sign Up clicked ' + phoneNumber + ' ' + password);
+  void validateAndSubmitForm() {
+    if (_signUpForm2Key.currentState.validate()) {
+      print('Form validated');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Container(
-      key: WidgetKeys.loginFormKey,
-      height: size.height * 0.5,
+      key: WidgetKeys.signUpForm2Key,
+      height: size.height * 0.92,
       width: size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -39,12 +48,12 @@ class _LoginFormState extends State<LoginForm> {
       child: Padding(
         padding: EdgeInsets.only(top: 30, left: 25, right: 25),
         child: Form(
-          key: _formKey,
+          key: _signUpForm2Key,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'Sign Up',
+                'Personal Info',
                 style: TextStyle(
                   fontFamily: 'Larsseit',
                   fontSize: 30,
@@ -55,14 +64,40 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(
                 height: size.height * 0.025,
               ),
+              RoundedDropDownFeild(
+                text: 'Your Country',
+                isCountry: true,
+                isRequiredFeild: true,
+                onChange: (value) {
+                  print('Country ' + value);
+                },
+              ),
+              RoundedDropDownFeild(
+                isRequiredFeild: true,
+                isCountry: false,
+                text: 'Your Title',
+                onChange: (value) {
+                  print('Title ' + value);
+                },
+              ),
+              RoundedTextFeild(
+                isRequiredFeild: true,
+                isPassword: false,
+                isNumber: false,
+                isPhoneNumber: false,
+                text: 'Your Name',
+                onChange: (text) {
+                  print(text);
+                },
+              ),
               RoundedTextFeild(
                 isRequiredFeild: true,
                 isPassword: false,
                 isNumber: true,
-                isPhoneNumber: true,
-                text: 'Your Phone',
+                isPhoneNumber: false,
+                text: 'NIC/ Passport Number',
                 onChange: (text) {
-                  phoneNumber = text;
+                  print(text);
                 },
               ),
               RoundedTextFeild(
@@ -72,7 +107,7 @@ class _LoginFormState extends State<LoginForm> {
                 isPhoneNumber: false,
                 text: 'Password',
                 onChange: (text) {
-                  password = text;
+                  print(text);
                 },
               ),
               SizedBox(
@@ -81,11 +116,11 @@ class _LoginFormState extends State<LoginForm> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: RoundedButton(
-                  text: 'SIGN UP',
-                  action: submitForm,
+                  text: 'SUBMIT',
+                  action: validateAndSubmitForm,
                   height: size.height * 0.072,
-                  width: size.width * 0.39,
-                  icon: Icons.near_me,
+                  width: size.width * 0.4,
+                  icon: Icons.send,
                 ),
               )
             ],

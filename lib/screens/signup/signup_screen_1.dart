@@ -1,10 +1,10 @@
 import 'package:dialog_doc990_mobile/screens/home/home_navigation_menu.dart';
-import 'package:dialog_doc990_mobile/screens/login/login_background.dart';
-import 'package:dialog_doc990_mobile/screens/login/login_form.dart';
+import 'package:dialog_doc990_mobile/screens/signup/signup_background_1.dart';
+import 'package:dialog_doc990_mobile/screens/signup/signup_form_1.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'loginScreenKey');
+class SignUpScreen1 extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'signUpScreenKey');
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class LoginScreen extends StatelessWidget {
         children: <Widget>[
           SingleChildScrollView(
             child: Container(
-              child: LoginBackground(
-                child: LoginForm(),
+              child: SignUpBackground1(
+                child: SignUpForm1(),
               ),
             ),
           ),

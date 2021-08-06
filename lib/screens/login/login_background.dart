@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
 class LoginBackground extends StatelessWidget {
@@ -8,6 +9,7 @@ class LoginBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
+      key: WidgetKeys.loginBackgroundKey,
       color: Colors.red[900],
       height: size.height,
       width: size.width,

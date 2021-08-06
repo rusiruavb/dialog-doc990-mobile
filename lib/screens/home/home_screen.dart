@@ -1,10 +1,11 @@
+import 'package:dialog_doc990_mobile/screens/home/home_body_background.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_navigation_menu.dart';
-import 'package:dialog_doc990_mobile/screens/login/login_background.dart';
-import 'package:dialog_doc990_mobile/screens/login/login_form.dart';
+import 'package:dialog_doc990_mobile/screens/home/home_screen_covid_content.dart';
+import 'package:dialog_doc990_mobile/screens/home/home_screen_service_content.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'loginScreenKey');
+class HomeScreen extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>(debugLabel: 'homeScreenKey');
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,9 @@ class LoginScreen extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
-            child: Container(
-              child: LoginBackground(
-                child: LoginForm(),
+            child: HomeBodyBackground(
+              child: HomeScreenServiceContent(
+                child: HomeScreenCovidContent(),
               ),
             ),
           ),

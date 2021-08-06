@@ -60,24 +60,17 @@ class _RoundedButtonState extends State<RoundedButton> {
           child: Row(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(right: 10),
+                padding: EdgeInsets.only(right: 0),
                 child: Text(
                   text,
                   style: TextStyle(
-                      color: textColor,
-                      fontFamily: 'Larsseit',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
+                    color: textColor,
+                    fontFamily: 'Larsseit',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 10),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 25,
-                ),
-              )
             ],
           ),
         ),
