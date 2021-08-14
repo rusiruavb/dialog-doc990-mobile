@@ -84,7 +84,7 @@ class _LoginFormState extends State<LoginForm> {
                   text: 'SIGN UP',
                   action: submitForm,
                   height: size.height * 0.072,
-                  width: size.width * 0.39,
+                  width: size.width * 0.31,
                   icon: Icons.near_me,
                 ),
               )

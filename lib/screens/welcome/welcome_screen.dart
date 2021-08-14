@@ -1,62 +1,76 @@
 import 'dart:async';
 
-import 'package:dialog_doc990_mobile/screens/login/login_screen.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:dialog_doc990_mobile/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
+const colorizeColors = [
+  Color(0xffe62a29),
+  Color(0xffffcb08),
+];
+
 class _SplashScreenState extends State<WelcomeScreen> {
   @override
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 1),
-        () => {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()))
-            });
+      Duration(seconds: 3),
+      () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-    ));
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Positioned(
-            top: 0,
-            right: 0,
-            child: Image.asset(
-              'assets/images/landing_top.png',
-              width: size.width * 0.5,
-            ),
-          ),
-          Positioned(
-            child: Image.asset(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
               'assets/images/logo.png',
-              scale: 1.3,
-              alignment: Alignment.center,
+              height: 150,
             ),
-          ),
-          Positioned(
-            bottom: 0,
-            child: Image.asset(
-              'assets/images/landing_bottom.png',
-              width: size.width,
-              height: size.height * 0.33,
-              fit: BoxFit.fill,
+            SizedBox(
+              height: 15,
             ),
-          )
-        ],
+            AnimatedTextKit(
+              animatedTexts: [
+                ColorizeAnimatedText(
+                  'Channeling Made Easy',
+                  textStyle: TextStyle(
+                    fontFamily: 'Larsseit',
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal,
+                  ),
+                  colors: colorizeColors,
+                  speed: const Duration(milliseconds: 300),
+                )
+              ],
+              totalRepeatCount: 1,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            CircularProgressIndicator(
+              strokeWidth: 5,
+              valueColor: AlwaysStoppedAnimation<Color>(
+                Colors.red[900],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

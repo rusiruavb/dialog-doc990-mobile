@@ -22,8 +22,6 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Column(
       key: WidgetKeys.homeScreenContentKey,
       children: <Widget>[
@@ -50,18 +48,22 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
                 ServiceCard(
                   image: 'assets/images/search_doctor.png',
                   title: 'Channel Doctor',
+                  route: '/channel-doctor',
                 ),
                 ServiceCard(
                   image: 'assets/images/user_channelling.png',
                   title: 'My Channels',
+                  route: '/',
                 ),
                 ServiceCard(
                   image: 'assets/images/medicine.png',
                   title: 'My Medicines',
+                  route: '/',
                 ),
                 ServiceCard(
                   image: 'assets/images/money_refund.png',
                   title: 'Refunds',
+                  route: '/',
                 ),
               ],
             ),
@@ -76,11 +78,13 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
 class ServiceCard extends StatelessWidget {
   final String title;
   final String image;
+  final String route;
 
   const ServiceCard({
     Key key,
     this.title,
     this.image,
+    this.route,
   });
 
   @override
@@ -93,57 +97,62 @@ class ServiceCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         elevation: 0,
-        child: Container(
-          child: Stack(
-            children: <Widget>[
-              Align(
-                child: Image.asset(
-                  'assets/images/service_background.png',
-                  scale: 0.65,
-                ),
-                alignment: Alignment.center,
-              ),
-              Align(
-                child: Container(
-                  width: 110.0,
-                  height: 110.0,
+        child: InkWell(
+          onTap: () => {
+            Navigator.pushNamed(context, route),
+          },
+          child: Container(
+            child: Stack(
+              children: <Widget>[
+                Align(
+                  child: Image.asset(
+                    'assets/images/service_background.png',
+                    scale: 0.65,
+                  ),
                   alignment: Alignment.center,
-                  decoration: new BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(image),
-                      fit: BoxFit.fill,
+                ),
+                Align(
+                  child: Container(
+                    width: 110.0,
+                    height: 110.0,
+                    alignment: Alignment.center,
+                    decoration: new BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(image),
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
+                  alignment: Alignment.center,
                 ),
-                alignment: Alignment.center,
-              ),
-              Align(
-                child: Padding(
-                  child: Text(
-                    title,
-                    style: TextStyle(
-                      fontFamily: 'Larsseit',
-                      fontSize: 16,
+                Align(
+                  child: Padding(
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontFamily: 'Larsseit',
+                        fontSize: 16,
+                      ),
                     ),
+                    padding: EdgeInsets.only(bottom: 8),
                   ),
-                  padding: EdgeInsets.only(bottom: 8),
+                  alignment: Alignment.bottomCenter,
                 ),
-                alignment: Alignment.bottomCenter,
-              ),
-            ],
-          ),
-          width: 150,
-          height: 150,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.30),
-                spreadRadius: 0,
-                blurRadius: 5,
-              ),
-            ],
+              ],
+            ),
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.30),
+                  spreadRadius: 0,
+                  blurRadius: 5,
+                ),
+              ],
+            ),
           ),
         ),
       ),

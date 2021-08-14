@@ -16,7 +16,6 @@ Future<CovidInfo> getCovidDetails() async {
 
   if (responseData.statusCode == 200) {
     return CovidInfo.fromJson(jsonDecode(responseData.body)['data']);
-    ;
   } else {
     throw Exception('Failed to load the data');
   }

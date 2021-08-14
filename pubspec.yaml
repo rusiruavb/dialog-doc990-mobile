@@ -18,6 +18,8 @@ dependencies:
   fluttertoast: ^8.0.8
   http: ^0.13.3
   intl: ^0.16.1
+  animated_text_kit: ^4.2.1
+  splashscreen: ^1.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,5 @@
 import 'package:dialog_doc990_mobile/screen_keys.dart';
-import 'package:dialog_doc990_mobile/screens/home/home_screen.dart';
-import 'package:dialog_doc990_mobile/screens/login/login_screen.dart';
-import 'package:dialog_doc990_mobile/screens/signup/signup_screen_1.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 
 class HomeNavigationMenu extends StatelessWidget {
   @override
@@ -16,17 +12,17 @@ class HomeNavigationMenu extends StatelessWidget {
           buildMenuItem(
             icon: Icons.home_rounded,
             text: 'Home',
-            onClicked: () => navigateToSelectedPage(context, '/'),
+            onClicked: () => Navigator.pushNamed(context, '/'),
           ),
           buildMenuItem(
             icon: Icons.person,
             text: 'Sign Up',
-            onClicked: () => navigateToSelectedPage(context, '/signup'),
+            onClicked: () => Navigator.pushNamed(context, '/signup'),
           ),
           buildMenuItem(
             icon: Icons.login,
             text: 'Sign In',
-            onClicked: () => navigateToSelectedPage(context, '/login'),
+            onClicked: () => Navigator.pushNamed(context, '/login'),
           ),
         ],
       ),
@@ -53,38 +49,5 @@ class HomeNavigationMenu extends StatelessWidget {
       ),
       onTap: onClicked,
     );
-  }
-
-  navigateToSelectedPage(BuildContext context, String route) {
-    Navigator.of(context).pop();
-    switch (route) {
-      case '/':
-        Navigator.push(
-          context,
-          PageTransition(
-            child: HomeScreen(),
-            type: PageTransitionType.fade,
-          ),
-        );
-        break;
-      case '/signup':
-        Navigator.push(
-          context,
-          PageTransition(
-            child: SignUpScreen1(),
-            type: PageTransitionType.fade,
-          ),
-        );
-        break;
-      case '/login':
-        Navigator.push(
-          context,
-          PageTransition(
-            child: LoginScreen(),
-            type: PageTransitionType.fade,
-          ),
-        );
-        break;
-    }
   }
 }
