@@ -1,10 +1,12 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
+import 'package:dialog_doc990_mobile/providers/sign_up_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:dialog_doc990_mobile/screens/signup/signup_screen_2.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 class SignUpForm1 extends StatefulWidget {
   @override
@@ -12,19 +14,13 @@ class SignUpForm1 extends StatefulWidget {
 }
 
 class _SignUpForm1State extends State<SignUpForm1> {
-  String phoneNumber;
-  String emailAddress;
   GlobalKey<FormState> _signUpFrom1Key =
       GlobalKey<FormState>(debugLabel: '_signFrom1Key');
-  _SignUpForm1State({
-    this.phoneNumber,
-    this.emailAddress,
-  });
 
   void submitAndNavigateTo2ndScreen() {
     if (_signUpFrom1Key.currentState.validate() &&
-        emailAddress != null &&
-        phoneNumber != null) {
+        context.read<SignUpProvider>().getEmail() != null &&
+        context.read<SignUpProvider>().getPhoneNumber() != null) {
       Navigator.push(
         context,
         PageTransition(
@@ -69,8 +65,9 @@ class _SignUpForm1State extends State<SignUpForm1> {
                 isPhoneNumber: false,
                 icon: Icons.email,
                 text: 'Email Address',
+                value: context.read<SignUpProvider>().getEmail(),
                 onChange: (text) {
-                  emailAddress = text;
+                  context.read<SignUpProvider>().setEmail(text);
                 },
               ),
               RoundedTextFeild(
@@ -80,8 +77,9 @@ class _SignUpForm1State extends State<SignUpForm1> {
                 isPhoneNumber: true,
                 icon: Icons.phone,
                 text: 'Your Phone Number',
+                value: context.read<SignUpProvider>().getPhoneNumber(),
                 onChange: (text) {
-                  phoneNumber = text;
+                  context.read<SignUpProvider>().setPhoneNumber(text);
                 },
               ),
               SizedBox(

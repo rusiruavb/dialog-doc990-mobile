@@ -2,8 +2,10 @@ import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_dropdown_feild.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
+import 'package:dialog_doc990_mobile/providers/sign_up_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUpForm2 extends StatefulWidget {
   @override
@@ -11,25 +13,37 @@ class SignUpForm2 extends StatefulWidget {
 }
 
 class _SignUpForm2State extends State<SignUpForm2> {
-  String title;
-  String name;
-  String country;
-  String nic;
-  String password;
   GlobalKey<FormState> _signUpForm2Key =
       GlobalKey<FormState>(debugLabel: '_signFrom2Key');
 
-  _SignUpForm2State({
-    this.title,
-    this.name,
-    this.country,
-    this.nic,
-    this.password,
-  });
-
   void validateAndSubmitForm() {
     if (_signUpForm2Key.currentState.validate()) {
-      print('Form validated');
+      String email = context.read<SignUpProvider>().getEmail();
+      String phoneNumber = context.read<SignUpProvider>().getPhoneNumber();
+      String country =
+          context.read<SignUpProvider>().getCountry().split(' ')[1];
+      String title = context.read<SignUpProvider>().getTitle().split(' ')[1];
+      String name = context.read<SignUpProvider>().getName();
+      String nic = context.read<SignUpProvider>().getNIC();
+      String password = context.read<SignUpProvider>().getPassword();
+
+      var userData = {
+        'email': email,
+        'phoneNumber': phoneNumber,
+        'country': country,
+        'title': title,
+        'name': name,
+        'nic': nic,
+        'password': password,
+      };
+
+      print(userData);
+      // send data to backend
+
+      // reset sign up state values
+      context.read<SignUpProvider>().resetValues();
+      // navigate to the home screen
+      Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     }
   }
 
@@ -67,8 +81,10 @@ class _SignUpForm2State extends State<SignUpForm2> {
               RoundedDropDownFeild(
                 text: 'Your Country',
                 isCountry: true,
+                value: context.read<SignUpProvider>().getCountry(),
                 isRequiredFeild: true,
                 onChange: (value) {
+                  context.read<SignUpProvider>().setCountry(value);
                   print('Country ' + value);
                 },
               ),
@@ -76,7 +92,9 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 isRequiredFeild: true,
                 isCountry: false,
                 text: 'Your Title',
+                value: context.read<SignUpProvider>().getTitle(),
                 onChange: (value) {
+                  context.read<SignUpProvider>().setTitle(value);
                   print('Title ' + value);
                 },
               ),
@@ -86,9 +104,10 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 isNumber: false,
                 icon: Icons.phone,
                 isPhoneNumber: false,
+                value: context.read<SignUpProvider>().getName(),
                 text: 'Your Name',
                 onChange: (text) {
-                  print(text);
+                  context.read<SignUpProvider>().setName(text);
                 },
               ),
               RoundedTextFeild(
@@ -97,9 +116,10 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 isNumber: true,
                 icon: Icons.credit_card,
                 isPhoneNumber: false,
+                value: context.read<SignUpProvider>().getNIC(),
                 text: 'NIC/ Passport Number',
                 onChange: (text) {
-                  print(text);
+                  context.read<SignUpProvider>().setNIC(text);
                 },
               ),
               RoundedTextFeild(
@@ -109,8 +129,9 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 icon: Icons.password,
                 isPhoneNumber: false,
                 text: 'Password',
+                value: context.read<SignUpProvider>().getPassword(),
                 onChange: (text) {
-                  print(text);
+                  context.read<SignUpProvider>().setPassword(text);
                 },
               ),
               SizedBox(

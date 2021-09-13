@@ -6,12 +6,14 @@ class RoundedDropDownFeild extends StatefulWidget {
   final String text;
   final bool isRequiredFeild;
   final bool isCountry;
+  final String value;
 
   const RoundedDropDownFeild({
     Key key,
     this.isRequiredFeild,
     this.onChange,
     this.text,
+    this.value,
     this.isCountry,
   }) : super(key: key);
 
@@ -20,6 +22,7 @@ class RoundedDropDownFeild extends StatefulWidget {
         isRequiredFeild: isRequiredFeild,
         onChange: onChange,
         text: text,
+        value: value,
         isCountry: isCountry,
       );
 }
@@ -29,6 +32,7 @@ class _RoundedDropDownFeildState extends State<RoundedDropDownFeild> {
   final String text;
   final bool isRequiredFeild;
   final bool isCountry;
+  final String value;
   bool _isFieldValid;
 
   _RoundedDropDownFeildState({
@@ -36,6 +40,7 @@ class _RoundedDropDownFeildState extends State<RoundedDropDownFeild> {
     this.isRequiredFeild,
     this.onChange,
     this.text,
+    this.value,
     this.isCountry,
   });
 
@@ -187,8 +192,7 @@ class DropDownContainer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 1),
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 3),
+      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 3),
       width: size.width * 0.9,
       decoration: BoxDecoration(
           color: Colors.grey[300], borderRadius: BorderRadius.circular(15)),

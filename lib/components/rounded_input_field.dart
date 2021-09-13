@@ -7,6 +7,7 @@ class RoundedTextFeild extends StatefulWidget {
   final String text;
   final bool isNumber;
   final IconData icon;
+  final String value;
   final bool isPhoneNumber;
   final bool isRequiredFeild;
   const RoundedTextFeild({
@@ -15,6 +16,7 @@ class RoundedTextFeild extends StatefulWidget {
     this.isPassword,
     this.isNumber,
     this.icon,
+    this.value,
     this.text,
     this.isPhoneNumber = false,
     this.isRequiredFeild,
@@ -27,6 +29,7 @@ class RoundedTextFeild extends StatefulWidget {
         isPhoneNumber: isPhoneNumber,
         onChange: onChange,
         text: text,
+        value: value,
         isRequiredFeild: isRequiredFeild,
       );
 }
@@ -36,6 +39,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
   final bool isPassword;
   final String text;
   final bool isNumber;
+  final String value;
   final IconData icon;
   final bool isPhoneNumber;
   final bool isRequiredFeild;
@@ -47,6 +51,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
     this.isPassword,
     this.isNumber,
     this.icon,
+    this.value,
     this.text,
     this.isPhoneNumber = false,
     this.isRequiredFeild,
@@ -72,6 +77,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
           ),
           TextFieldContainer(
             child: TextFormField(
+              initialValue: value,
               validator: (value) {
                 if (value.isEmpty) {
                   setState(() {
@@ -119,6 +125,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
                           ),
                           alignment: Alignment.centerRight,
                         ),
+                        onPressed: () {},
                       ),
               ),
             ),

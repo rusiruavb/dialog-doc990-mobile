@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +40,7 @@ class HomeNavigationMenu extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            fontFamily: 'Larsseit',
+            fontFamily: FONT_FAMILY_PRIMARY,
             fontSize: 18,
           ),
         ),

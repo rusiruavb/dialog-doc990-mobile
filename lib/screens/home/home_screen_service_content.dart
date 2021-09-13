@@ -16,6 +16,11 @@ class HomeScreenServiceContent extends StatefulWidget {
 class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
   final Widget child;
 
+  @override
+  void initialState() {
+    super.initState();
+  }
+
   _HomeScreenServiceContentState({
     this.child,
   });
