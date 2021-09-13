@@ -34,7 +34,7 @@ class SignUpScreen1 extends StatelessWidget {
               onPressed: () => _scaffoldKey.currentState.openDrawer(),
               icon: Icon(
                 Icons.notes,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
           ),

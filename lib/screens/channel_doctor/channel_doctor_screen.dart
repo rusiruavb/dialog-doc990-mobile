@@ -21,6 +21,14 @@ class SearchDoctorScreen extends StatelessWidget {
       ),
       body: Stack(
         children: <Widget>[
+          SingleChildScrollView(
+            child: Container(
+              child: Padding(
+                padding: EdgeInsets.only(top: 100),
+                child: SeachDoctorFormScreen(),
+              ),
+            ),
+          ),
           Padding(
             padding: EdgeInsets.only(top: 30, left: 0),
             child: IconButton(
@@ -52,10 +60,6 @@ class SearchDoctorScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 100),
-            child: SeachDoctorFormScreen(),
-          )
         ],
       ),
     );

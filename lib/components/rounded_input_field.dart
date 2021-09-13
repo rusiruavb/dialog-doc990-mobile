@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:flutter/material.dart';
 
 class RoundedTextFeild extends StatefulWidget {
@@ -5,6 +6,7 @@ class RoundedTextFeild extends StatefulWidget {
   final bool isPassword;
   final String text;
   final bool isNumber;
+  final IconData icon;
   final bool isPhoneNumber;
   final bool isRequiredFeild;
   const RoundedTextFeild({
@@ -12,6 +14,7 @@ class RoundedTextFeild extends StatefulWidget {
     this.onChange,
     this.isPassword,
     this.isNumber,
+    this.icon,
     this.text,
     this.isPhoneNumber = false,
     this.isRequiredFeild,
@@ -19,6 +22,7 @@ class RoundedTextFeild extends StatefulWidget {
   @override
   _RoundedTextFeildState createState() => _RoundedTextFeildState(
         isNumber: isNumber,
+        icon: icon,
         isPassword: isPassword,
         isPhoneNumber: isPhoneNumber,
         onChange: onChange,
@@ -32,6 +36,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
   final bool isPassword;
   final String text;
   final bool isNumber;
+  final IconData icon;
   final bool isPhoneNumber;
   final bool isRequiredFeild;
   bool _isFieldValid;
@@ -41,6 +46,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
     this.onChange,
     this.isPassword,
     this.isNumber,
+    this.icon,
     this.text,
     this.isPhoneNumber = false,
     this.isRequiredFeild,
@@ -56,7 +62,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
             text,
             style: TextStyle(
               fontFamily: 'Larsseit',
-              fontSize: 18,
+              fontSize: 15,
               fontWeight: FontWeight.normal,
             ),
             textAlign: TextAlign.left,
@@ -90,9 +96,14 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
                 counterText: '',
                 suffixIcon: isPassword
                     ? IconButton(
-                        icon: Icon(
-                          _isObscure ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.red[600],
+                        icon: Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            _isObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Color(0xff4a4a4a),
+                          ),
                         ),
                         onPressed: () {
                           setState(() {
@@ -100,7 +111,15 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
                           });
                         },
                       )
-                    : null,
+                    : IconButton(
+                        icon: Align(
+                          child: Icon(
+                            icon,
+                            color: Color(INPUT_ICON_COLOR),
+                          ),
+                          alignment: Alignment.centerRight,
+                        ),
+                      ),
               ),
             ),
           ),
@@ -109,12 +128,13 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
                   _isFieldValid != null &&
                   !_isFieldValid
               ? Padding(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: EdgeInsets.only(left: 5),
                   child: Text(
-                    text + ' is required!',
+                    text + ' is required.',
                     style: TextStyle(
                       color: Colors.red[800],
-                      fontFamily: 'Larsseit',
+                      fontFamily: FONT_FAMILY_PRIMARY,
+                      fontSize: 12,
                     ),
                   ),
                 )
@@ -136,12 +156,11 @@ class TextFieldContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 1),
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 3),
+      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 1.5),
       width: size.width * 0.9,
       height: 50,
       decoration: BoxDecoration(
-          color: Colors.grey[300], borderRadius: BorderRadius.circular(30)),
+          color: Colors.grey[300], borderRadius: BorderRadius.circular(15)),
       child: child,
     );
   }

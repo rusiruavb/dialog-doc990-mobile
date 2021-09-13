@@ -1,6 +1,8 @@
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 class SignUpBackground1 extends StatelessWidget {
   final Widget child;
   const SignUpBackground1({
@@ -12,66 +14,48 @@ class SignUpBackground1 extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Container(
       key: WidgetKeys.signUpScreenBackground1Key,
-      color: Colors.red[900],
       height: size.height,
       width: size.width,
       child: Stack(
         children: <Widget>[
           Positioned(
-            top: 0,
-            left: 0,
-            child: Padding(
-              child: Image.asset(
-                'assets/images/sign_in_1_top.png',
-                scale: 3.3,
-              ),
-              padding: EdgeInsets.only(
-                top: 30,
-                left: 20,
-              ),
-            ),
-          ),
-          Positioned(
-            top: 0,
-            right: 0,
-            child: Padding(
-              child: Text(
-                'Sign Up & Save',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontFamily: 'Larsseit',
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+            top: 100,
+            left: 20,
+            child: Stack(
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/logo.png',
+                  scale: 2.5,
                 ),
-              ),
-              padding: EdgeInsets.only(
-                top: 100,
-                right: 25,
+              ],
+            ),
+          ),
+          Positioned(
+            top: 210,
+            left: 20,
+            child: Text(
+              '15% OFF on Service Fee',
+              style: TextStyle(
+                fontFamily: FONT_FAMILY_PRIMARY,
+                fontSize: 20,
+                fontWeight: FontWeight.w200,
+                color: Color(TEXT_SECONDARY),
               ),
             ),
           ),
           Positioned(
-            top: 0,
-            right: 0,
-            child: Padding(
-              child: Text(
-                '15% OFF on Service Fee',
-                style: TextStyle(
-                  fontSize: 19,
-                  fontFamily: 'Larsseit',
-                  color: Colors.white,
-                ),
-              ),
-              padding: EdgeInsets.only(
-                top: 141,
-                right: 23,
+            top: 230,
+            left: 20,
+            child: Text(
+              'Sign Up & SAVE',
+              style: TextStyle(
+                fontFamily: FONT_FAMILY_SECONDARY,
+                fontSize: 38,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
-          Positioned(
-            child: child,
-            bottom: 0,
-          )
+          Positioned(bottom: 0, child: child)
         ],
       ),
     );

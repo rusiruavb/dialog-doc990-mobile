@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatefulWidget {
@@ -30,14 +31,13 @@ class RoundedButton extends StatefulWidget {
 class _RoundedButtonState extends State<RoundedButton> {
   final String text;
   final Function action;
-  final Color color = Colors.red;
+  final Color color = Color(COLOR_PRIMARY);
   final double height;
   final double width;
   final IconData icon;
   final Color textColor = Colors.white;
 
   _RoundedButtonState({
-    Key key,
     this.text,
     this.action,
     this.height,
@@ -52,26 +52,19 @@ class _RoundedButtonState extends State<RoundedButton> {
       height: height,
       width: width,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(15),
         child: FlatButton(
           padding: EdgeInsets.symmetric(vertical: 17.5, horizontal: 22),
           color: color,
           onPressed: action,
-          child: Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(right: 0),
-                child: Text(
-                  text,
-                  style: TextStyle(
-                    color: textColor,
-                    fontFamily: 'Larsseit',
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
+          child: Text(
+            text,
+            style: TextStyle(
+              color: textColor,
+              fontFamily: FONT_FAMILY_PRIMARY,
+              fontSize: 20,
+              fontWeight: FontWeight.w100,
+            ),
           ),
         ),
       ),

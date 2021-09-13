@@ -12,7 +12,7 @@ class HomeNavigationMenu extends StatelessWidget {
           buildMenuItem(
             icon: Icons.home_rounded,
             text: 'Home',
-            onClicked: () => Navigator.pushNamed(context, '/'),
+            onClicked: () => Navigator.pushNamed(context, '/home'),
           ),
           buildMenuItem(
             icon: Icons.person,

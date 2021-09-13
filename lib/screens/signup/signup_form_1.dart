@@ -1,5 +1,6 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:dialog_doc990_mobile/screens/signup/signup_screen_2.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
 
   void submitAndNavigateTo2ndScreen() {
     if (_signUpFrom1Key.currentState.validate() &&
-        phoneNumber != null &&
+        emailAddress != null &&
         phoneNumber != null) {
       Navigator.push(
         context,
@@ -40,13 +41,8 @@ class _SignUpForm1State extends State<SignUpForm1> {
 
     return Container(
       key: WidgetKeys.signUpForm1Key,
-      height: size.height * 0.5,
+      height: size.height * 0.6,
       width: size.width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(50.0), topLeft: Radius.circular(50.0)),
-        color: Colors.white,
-      ),
       child: Padding(
         padding: EdgeInsets.only(top: 30, left: 25, right: 25),
         child: Form(
@@ -57,8 +53,8 @@ class _SignUpForm1State extends State<SignUpForm1> {
               Text(
                 'Contact Info',
                 style: TextStyle(
-                  fontFamily: 'Larsseit',
-                  fontSize: 30,
+                  fontFamily: FONT_FAMILY_SECONDARY,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.left,
@@ -71,6 +67,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
                 isPassword: false,
                 isNumber: false,
                 isPhoneNumber: false,
+                icon: Icons.email,
                 text: 'Email Address',
                 onChange: (text) {
                   emailAddress = text;
@@ -81,6 +78,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
                 isPassword: false,
                 isNumber: true,
                 isPhoneNumber: true,
+                icon: Icons.phone,
                 text: 'Your Phone Number',
                 onChange: (text) {
                   phoneNumber = text;
@@ -95,9 +93,37 @@ class _SignUpForm1State extends State<SignUpForm1> {
                   text: 'NEXT',
                   action: submitAndNavigateTo2ndScreen,
                   height: size.height * 0.072,
-                  width: size.width * 0.25,
+                  width: size.width,
                 ),
-              )
+              ),
+              SizedBox(
+                height: size.height * 0.025,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Already registered?',
+                    style: TextStyle(
+                      fontFamily: FONT_FAMILY_PRIMARY,
+                      fontSize: 16,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
+                    child: Text(
+                      ' Sign In',
+                      style: TextStyle(
+                        fontFamily: FONT_FAMILY_PRIMARY,
+                        fontSize: 16,
+                        color: Color(COLOR_PRIMARY),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
         ),

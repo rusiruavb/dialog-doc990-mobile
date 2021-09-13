@@ -1,6 +1,7 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_dropdown_feild.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
@@ -38,15 +39,14 @@ class _SignUpForm2State extends State<SignUpForm2> {
 
     return Container(
       key: WidgetKeys.signUpForm2Key,
-      height: size.height * 0.92,
+      height: size.height * 2,
       width: size.width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(50.0), topLeft: Radius.circular(50.0)),
-        color: Colors.white,
-      ),
       child: Padding(
-        padding: EdgeInsets.only(top: 30, left: 25, right: 25),
+        padding: EdgeInsets.only(
+          top: 0,
+          left: 25,
+          right: 25,
+        ),
         child: Form(
           key: _signUpForm2Key,
           child: Column(
@@ -55,8 +55,8 @@ class _SignUpForm2State extends State<SignUpForm2> {
               Text(
                 'Personal Info',
                 style: TextStyle(
-                  fontFamily: 'Larsseit',
-                  fontSize: 30,
+                  fontFamily: FONT_FAMILY_SECONDARY,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.left,
@@ -84,6 +84,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 isRequiredFeild: true,
                 isPassword: false,
                 isNumber: false,
+                icon: Icons.phone,
                 isPhoneNumber: false,
                 text: 'Your Name',
                 onChange: (text) {
@@ -94,6 +95,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 isRequiredFeild: true,
                 isPassword: false,
                 isNumber: true,
+                icon: Icons.credit_card,
                 isPhoneNumber: false,
                 text: 'NIC/ Passport Number',
                 onChange: (text) {
@@ -104,6 +106,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 isRequiredFeild: true,
                 isPassword: true,
                 isNumber: false,
+                icon: Icons.password,
                 isPhoneNumber: false,
                 text: 'Password',
                 onChange: (text) {
@@ -113,16 +116,56 @@ class _SignUpForm2State extends State<SignUpForm2> {
               SizedBox(
                 height: size.height * 0.010,
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: RoundedButton(
-                  text: 'SUBMIT',
-                  action: validateAndSubmitForm,
-                  height: size.height * 0.072,
-                  width: size.width * 0.4,
-                  icon: Icons.send,
-                ),
-              )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'By clicking "Register", I agree to the',
+                    style: TextStyle(
+                      fontFamily: FONT_FAMILY_PRIMARY,
+                      fontSize: 15,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Terms',
+                    style: TextStyle(
+                      fontFamily: FONT_FAMILY_PRIMARY,
+                      fontSize: 15,
+                      color: Color(COLOR_PRIMARY),
+                    ),
+                  ),
+                  Text(
+                    ' and ',
+                    style: TextStyle(
+                      fontFamily: FONT_FAMILY_PRIMARY,
+                      fontSize: 15,
+                    ),
+                  ),
+                  Text(
+                    'Conditions',
+                    style: TextStyle(
+                      fontFamily: FONT_FAMILY_PRIMARY,
+                      fontSize: 15,
+                      color: Color(COLOR_PRIMARY),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: size.height * 0.025,
+              ),
+              RoundedButton(
+                text: 'SUBMIT',
+                action: validateAndSubmitForm,
+                height: size.height * 0.072,
+                width: size.width,
+                icon: Icons.send,
+              ),
             ],
           ),
         ),

@@ -20,6 +20,7 @@ dependencies:
   intl: ^0.16.1
   animated_text_kit: ^4.2.1
   splashscreen: ^1.2.0
+  animations: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -35,3 +36,6 @@ flutter:
     - family: Larsseit
       fonts:
         - asset: assets/fonts/Larsseit.ttf
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans.ttf

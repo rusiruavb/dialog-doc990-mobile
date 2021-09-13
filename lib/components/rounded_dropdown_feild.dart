@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:flutter/material.dart';
 
 class RoundedDropDownFeild extends StatefulWidget {
@@ -49,7 +50,7 @@ class _RoundedDropDownFeildState extends State<RoundedDropDownFeild> {
             text,
             style: TextStyle(
               fontFamily: 'Larsseit',
-              fontSize: 18,
+              fontSize: 15,
               fontWeight: FontWeight.normal,
             ),
             textAlign: TextAlign.left,
@@ -153,12 +154,13 @@ class _RoundedDropDownFeildState extends State<RoundedDropDownFeild> {
                   _isFieldValid != null &&
                   !_isFieldValid
               ? Padding(
-                  padding: EdgeInsets.only(left: 15),
+                  padding: EdgeInsets.only(left: 5),
                   child: Text(
                     text + ' is required!',
                     style: TextStyle(
                       color: Colors.red[800],
-                      fontFamily: 'Larsseit',
+                      fontFamily: FONT_FAMILY_PRIMARY,
+                      fontSize: 12,
                     ),
                   ),
                 )
@@ -189,7 +191,7 @@ class DropDownContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 25, vertical: 3),
       width: size.width * 0.9,
       decoration: BoxDecoration(
-          color: Colors.grey[300], borderRadius: BorderRadius.circular(30)),
+          color: Colors.grey[300], borderRadius: BorderRadius.circular(15)),
       child: child,
     );
   }

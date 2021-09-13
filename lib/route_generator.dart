@@ -10,7 +10,7 @@ class RouteGenerator {
     final arguments = settings.arguments;
 
     switch (settings.name) {
-      case '/':
+      case '/home':
         return PageRouteBuilder(
           settings: settings,
           pageBuilder: (_, __, ___) => HomeScreen(),

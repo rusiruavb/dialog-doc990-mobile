@@ -1,5 +1,6 @@
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 
@@ -31,11 +32,6 @@ class _LoginFormState extends State<LoginForm> {
       key: WidgetKeys.loginFormKey,
       height: size.height * 0.5,
       width: size.width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-            topRight: Radius.circular(50.0), topLeft: Radius.circular(50.0)),
-        color: Colors.white,
-      ),
       child: Padding(
         padding: EdgeInsets.only(top: 30, left: 25, right: 25),
         child: Form(
@@ -43,24 +39,13 @@ class _LoginFormState extends State<LoginForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                'Sign Up',
-                style: TextStyle(
-                  fontFamily: 'Larsseit',
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.left,
-              ),
-              SizedBox(
-                height: size.height * 0.025,
-              ),
               RoundedTextFeild(
                 isRequiredFeild: true,
                 isPassword: false,
                 isNumber: true,
                 isPhoneNumber: true,
-                text: 'Your Phone',
+                text: 'Phone Number',
+                icon: Icons.phone,
                 onChange: (text) {
                   phoneNumber = text;
                 },
@@ -70,6 +55,7 @@ class _LoginFormState extends State<LoginForm> {
                 isPassword: true,
                 isNumber: false,
                 isPhoneNumber: false,
+                icon: Icons.password,
                 text: 'Password',
                 onChange: (text) {
                   password = text;
@@ -84,9 +70,50 @@ class _LoginFormState extends State<LoginForm> {
                   text: 'SIGN UP',
                   action: submitForm,
                   height: size.height * 0.072,
-                  width: size.width * 0.31,
+                  width: size.width,
                   icon: Icons.near_me,
                 ),
+              ),
+              SizedBox(
+                height: size.height * 0.025,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Create new Account?',
+                    style: TextStyle(
+                      fontFamily: FONT_FAMILY_PRIMARY,
+                      fontSize: 16,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/signup');
+                    },
+                    child: Text(
+                      ' Sign Up',
+                      style: TextStyle(
+                        fontFamily: FONT_FAMILY_PRIMARY,
+                        fontSize: 16,
+                        color: Color(COLOR_PRIMARY),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: size.height * 0.010,
+              ),
+              Align(
+                child: Text(
+                  'Forgot Password?',
+                  style: TextStyle(
+                    fontFamily: FONT_FAMILY_PRIMARY,
+                    fontSize: 16,
+                  ),
+                ),
+                alignment: Alignment.center,
               )
             ],
           ),
