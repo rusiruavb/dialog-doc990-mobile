@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:dialog_doc990_mobile/api_endpoints.dart';
 import 'package:dialog_doc990_mobile/components/hospital_dropdown.dart';
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/specialization_dropdown.dart';
@@ -5,6 +8,29 @@ import 'package:dialog_doc990_mobile/components/underline_datepicker.dart';
 import 'package:dialog_doc990_mobile/components/underline_input_feild.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+
+Future<Response> sendDotorSearchData(
+    doctorName, specilization, selectedDate, hospitalName) async {
+  print(GET_SEARCHED_DOCTORS);
+  final responseData = await http.post(Uri.parse(GET_SEARCHED_DOCTORS),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'name': doctorName,
+        'specialization': specilization,
+        'date': selectedDate,
+        'hospital': hospitalName,
+      }));
+
+  if (responseData.statusCode == 200) {
+    print(jsonDecode(responseData.body)['data']);
+  } else {
+    print('Error');
+  }
+}
 
 class SeachDoctorFormScreen extends StatefulWidget {
   @override
@@ -32,6 +58,12 @@ class _SeachDoctorFormScreenState extends State<SeachDoctorFormScreen> {
             specilization +
             ' ' +
             selectedDate);
+        sendDotorSearchData(
+          doctorName,
+          specilization,
+          selectedDate,
+          hospitalName,
+        );
       } else {
         // display error message
       }
