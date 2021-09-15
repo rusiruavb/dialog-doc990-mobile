@@ -19,8 +19,8 @@ class _SignUpForm1State extends State<SignUpForm1> {
 
   void submitAndNavigateTo2ndScreen() {
     if (_signUpFrom1Key.currentState.validate() &&
-        context.read<SignUpProvider>().getEmail() != null &&
-        context.read<SignUpProvider>().getPhoneNumber() != null) {
+        context.read<SignUpProvider>().getEmail() != '' &&
+        context.read<SignUpProvider>().getPhoneNumber() != '') {
       Navigator.push(
         context,
         PageTransition(
@@ -89,6 +89,8 @@ class _SignUpForm1State extends State<SignUpForm1> {
                 alignment: Alignment.bottomRight,
                 child: RoundedButton(
                   text: 'NEXT',
+                  color: Color(COLOR_PRIMARY),
+                  textColor: Colors.white,
                   action: submitAndNavigateTo2ndScreen,
                   height: size.height * 0.072,
                   width: size.width,

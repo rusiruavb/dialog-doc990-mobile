@@ -66,8 +66,8 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
           Text(
             text,
             style: TextStyle(
-              fontFamily: 'Larsseit',
-              fontSize: 15,
+              fontFamily: FONT_FAMILY_PRIMARY,
+              fontSize: 18,
               fontWeight: FontWeight.normal,
             ),
             textAlign: TextAlign.left,
@@ -95,7 +95,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
               maxLength: isPhoneNumber ? 10 : 200,
               keyboardType:
                   isNumber ? TextInputType.number : TextInputType.text,
-              style: TextStyle(fontFamily: 'Larsseit', fontSize: 20),
+              style: TextStyle(fontFamily: FONT_FAMILY_PRIMARY, fontSize: 20),
               onChanged: onChange,
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -141,7 +141,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
                     style: TextStyle(
                       color: Colors.red[800],
                       fontFamily: FONT_FAMILY_PRIMARY,
-                      fontSize: 12,
+                      fontSize: 15,
                     ),
                   ),
                 )

@@ -69,6 +69,8 @@ class _LoginFormState extends State<LoginForm> {
                 child: RoundedButton(
                   text: 'SIGN UP',
                   action: submitForm,
+                  color: Color(COLOR_PRIMARY),
+                  textColor: Colors.white,
                   height: size.height * 0.072,
                   width: size.width,
                   icon: Icons.near_me,

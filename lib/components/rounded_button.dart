@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 class RoundedButton extends StatefulWidget {
   final String text;
   final Function action;
-  final Color color = Colors.red;
+  final Color color;
   final double height;
   final double width;
   final IconData icon;
-  final Color textColor = Colors.white;
+  final Color textColor;
 
   const RoundedButton({
     Key key,
@@ -16,6 +16,8 @@ class RoundedButton extends StatefulWidget {
     this.action,
     this.height,
     this.width,
+    this.color,
+    this.textColor,
     this.icon,
   }) : super(key: key);
   @override
@@ -24,18 +26,20 @@ class RoundedButton extends StatefulWidget {
         height: height,
         icon: icon,
         text: text,
+        textColor: textColor,
         width: width,
+        color: color,
       );
 }
 
 class _RoundedButtonState extends State<RoundedButton> {
   final String text;
   final Function action;
-  final Color color = Color(COLOR_PRIMARY);
+  final Color color;
   final double height;
   final double width;
   final IconData icon;
-  final Color textColor = Colors.white;
+  final Color textColor;
 
   _RoundedButtonState({
     this.text,
@@ -43,6 +47,8 @@ class _RoundedButtonState extends State<RoundedButton> {
     this.height,
     this.width,
     this.icon,
+    this.textColor,
+    this.color,
   });
 
   @override

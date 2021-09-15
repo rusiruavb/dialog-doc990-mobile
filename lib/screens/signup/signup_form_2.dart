@@ -1,6 +1,8 @@
+import 'package:dialog_doc990_mobile/components/notification_api.dart';
 import 'package:dialog_doc990_mobile/components/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/rounded_dropdown_feild.dart';
 import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/components/rounded_loading_button.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/providers/sign_up_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
@@ -15,6 +17,13 @@ class SignUpForm2 extends StatefulWidget {
 class _SignUpForm2State extends State<SignUpForm2> {
   GlobalKey<FormState> _signUpForm2Key =
       GlobalKey<FormState>(debugLabel: '_signFrom2Key');
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    NotificationAPI.init();
+  }
 
   void validateAndSubmitForm() {
     if (_signUpForm2Key.currentState.validate()) {
@@ -38,10 +47,17 @@ class _SignUpForm2State extends State<SignUpForm2> {
       };
 
       print(userData);
+
       // send data to backend
 
       // reset sign up state values
       context.read<SignUpProvider>().resetValues();
+
+      NotificationAPI.showNotification(
+        title: 'Hi, ${name}',
+        body: 'Your account has been created sucessfully.',
+        payload: 'Heeeee',
+      );
       // navigate to the home screen
       Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     }
@@ -102,7 +118,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 isRequiredFeild: true,
                 isPassword: false,
                 isNumber: false,
-                icon: Icons.phone,
+                icon: Icons.person,
                 isPhoneNumber: false,
                 value: context.read<SignUpProvider>().getName(),
                 text: 'Your Name',
@@ -180,12 +196,52 @@ class _SignUpForm2State extends State<SignUpForm2> {
               SizedBox(
                 height: size.height * 0.025,
               ),
-              RoundedButton(
-                text: 'SUBMIT',
-                action: validateAndSubmitForm,
-                height: size.height * 0.072,
-                width: size.width,
-                icon: Icons.send,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(right: 5),
+                        child: RoundedButton(
+                          text: 'BACK',
+                          color: Color(COLOR_SECONDARY),
+                          textColor: Colors.black,
+                          action: () {
+                            Navigator.of(context).pop();
+                          },
+                          height: size.height * 0.072,
+                          width: size.width * 0.4,
+                          icon: Icons.send,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 5),
+                        child: isLoading
+                            ? RoundedLoadingButton(
+                                text: 'REGISTER',
+                                action: null,
+                                height: size.height * 0.072,
+                                width: size.width * 0.4,
+                                icon: Icons.send,
+                              )
+                            : RoundedButton(
+                                text: 'REGISTER',
+                                color: Color(COLOR_PRIMARY),
+                                textColor: Colors.white,
+                                action: validateAndSubmitForm,
+                                height: size.height * 0.072,
+                                width: size.width * 0.4,
+                                icon: Icons.send,
+                              ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
