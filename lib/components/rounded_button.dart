@@ -58,7 +58,7 @@ class _RoundedButtonState extends State<RoundedButton> {
       height: height,
       width: width,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(8),
         child: FlatButton(
           padding: EdgeInsets.symmetric(vertical: 17.5, horizontal: 22),
           color: color,

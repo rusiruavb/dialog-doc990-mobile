@@ -58,7 +58,7 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
                 ServiceCard(
                   image: 'assets/images/user_channelling.png',
                   title: 'My Channels',
-                  route: '/',
+                  route: '/bank-refund',
                 ),
                 ServiceCard(
                   image: 'assets/images/medicine.png',

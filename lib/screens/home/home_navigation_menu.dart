@@ -25,6 +25,10 @@ class HomeNavigationMenu extends StatelessWidget {
             text: 'Sign In',
             onClicked: () => Navigator.pushNamed(context, '/login'),
           ),
+          buildMenuItem(
+              icon: Icons.money_off_rounded,
+              text: 'Refund Request',
+              onClicked: () => Navigator.pushNamed(context, '/refund')),
         ],
       ),
     );
@@ -34,18 +38,14 @@ class HomeNavigationMenu extends StatelessWidget {
     return ListTile(
       leading: Icon(
         icon,
-        size: 30,
+        size: 28,
       ),
-      title: Padding(
-        child: Text(
-          text,
-          style: TextStyle(
-            fontFamily: FONT_FAMILY_PRIMARY,
-            fontSize: 18,
-          ),
-        ),
-        padding: EdgeInsets.only(
-          top: 5,
+      title: Text(
+        text,
+        style: TextStyle(
+          fontFamily: FONT_FAMILY_DEFAULT,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
         ),
       ),
       onTap: onClicked,

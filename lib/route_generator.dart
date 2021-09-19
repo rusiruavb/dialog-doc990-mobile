@@ -1,6 +1,8 @@
 import 'package:dialog_doc990_mobile/screens/channel_doctor/channel_doctor_screen.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_screen.dart';
 import 'package:dialog_doc990_mobile/screens/login/login_screen.dart';
+import 'package:dialog_doc990_mobile/screens/refund/refund_page.dart';
+import 'package:dialog_doc990_mobile/screens/refund/refund_screen.dart';
 import 'package:dialog_doc990_mobile/screens/signup/signup_screen_1.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -46,6 +48,15 @@ class RouteGenerator {
             child: c,
           ),
         );
+      case '/refund':
+        return PageRouteBuilder(
+          settings: settings,
+          pageBuilder: (_, __, ___) => BankRefundScreen(),
+          transitionsBuilder: (_, a, __, c) => FadeTransition(
+            opacity: a,
+            child: c,
+          ),
+        );
       default:
         return _errorRoute();
     }
@@ -56,6 +67,7 @@ class RouteGenerator {
       return Scaffold(
         appBar: AppBar(
           elevation: 0,
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.red[900],
           leading: IconButton(
             icon: Transform(

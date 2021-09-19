@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:flutter/material.dart';
 
 class UnderLineTextFeild extends StatefulWidget {
@@ -44,7 +45,8 @@ class _UnderLineTextFeildState extends State<UnderLineTextFeild> {
       child: Stack(
         children: <Widget>[
           TextFormField(
-            style: TextStyle(fontFamily: 'Larsseit'),
+            autofocus: true,
+            style: TextStyle(fontFamily: FONT_FAMILY_PRIMARY),
             decoration: InputDecoration(
               hintText: text,
               prefixIcon: Padding(

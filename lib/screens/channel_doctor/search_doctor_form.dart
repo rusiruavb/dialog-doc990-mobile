@@ -7,30 +7,10 @@ import 'package:dialog_doc990_mobile/components/specialization_dropdown.dart';
 import 'package:dialog_doc990_mobile/components/underline_datepicker.dart';
 import 'package:dialog_doc990_mobile/components/underline_input_feild.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
+import 'package:dialog_doc990_mobile/models/doctor_model.dart';
+import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
-
-Future<Response> sendDotorSearchData(
-    doctorName, specilization, selectedDate, hospitalName) async {
-  print(GET_SEARCHED_DOCTORS);
-  final responseData = await http.post(Uri.parse(GET_SEARCHED_DOCTORS),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, String>{
-        'name': doctorName,
-        'specialization': specilization,
-        'date': selectedDate,
-        'hospital': hospitalName,
-      }));
-
-  if (responseData.statusCode == 200) {
-    print(jsonDecode(responseData.body)['data']);
-  } else {
-    print('Error');
-  }
-}
+import 'package:provider/provider.dart';
 
 class SeachDoctorFormScreen extends StatefulWidget {
   @override
@@ -58,12 +38,10 @@ class _SeachDoctorFormScreenState extends State<SeachDoctorFormScreen> {
             specilization +
             ' ' +
             selectedDate);
-        sendDotorSearchData(
-          doctorName,
-          specilization,
-          selectedDate,
-          hospitalName,
-        );
+
+        Provider.of<SearchDoctorProvider>(context, listen: false)
+            .sendDotorSearchData(
+                doctorName, specilization, selectedDate, hospitalName);
       } else {
         // display error message
       }
@@ -71,7 +49,7 @@ class _SeachDoctorFormScreenState extends State<SeachDoctorFormScreen> {
 
     return Container(
       width: size.width,
-      height: size.height * 0.9,
+      height: size.height,
       child: Align(
         alignment: Alignment.topCenter,
         child: Card(
@@ -79,7 +57,7 @@ class _SeachDoctorFormScreenState extends State<SeachDoctorFormScreen> {
             side: BorderSide(color: Colors.white70, width: 1),
             borderRadius: BorderRadius.circular(15),
           ),
-          elevation: 0,
+          elevation: 3,
           child: Container(
             width: size.width * 0.9,
             height: size.height * 0.47,
@@ -147,7 +125,7 @@ class _SeachDoctorFormScreenState extends State<SeachDoctorFormScreen> {
                           width: size.width * 0.31,
                           action: validateAndSubmit,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 )

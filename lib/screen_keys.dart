@@ -18,4 +18,6 @@ class WidgetKeys {
       const Key('__homeScreenNavigationKey__');
   static final homeScreenContentKey = const Key('__homeScreenContentKey__');
   static final homeScreenKey = const Key('__homeScreenKey__');
+  static final bankRefundFormKey = const Key('__bankRefundFormKey__');
+  static final bankRefundScreenKey = const Key('__bankRefundScreenKey__');
 }
