@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/providers/appointment_provider.dart';
 import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
 import 'package:dialog_doc990_mobile/providers/sign_up_provider.dart';
 import 'package:dialog_doc990_mobile/route_generator.dart';
@@ -14,6 +15,7 @@ void main() => runApp(
         providers: [
           ChangeNotifierProvider(create: (_) => SignUpProvider()),
           ChangeNotifierProvider(create: (_) => SearchDoctorProvider()),
+          ChangeNotifierProvider(create: (_) => AppointmentProvider()),
         ],
         child: DocApp(),
       ),

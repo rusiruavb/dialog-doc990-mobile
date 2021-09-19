@@ -67,7 +67,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
             text,
             style: TextStyle(
               fontFamily: FONT_FAMILY_PRIMARY,
-              fontSize: 18,
+              fontSize: 15,
               fontWeight: FontWeight.normal,
             ),
             textAlign: TextAlign.left,
@@ -141,7 +141,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
                     style: TextStyle(
                       color: Colors.red[800],
                       fontFamily: FONT_FAMILY_PRIMARY,
-                      fontSize: 15,
+                      fontSize: 12,
                     ),
                   ),
                 )

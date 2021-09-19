@@ -1,16 +1,9 @@
-import 'dart:convert';
-
-import 'package:dialog_doc990_mobile/api_endpoints.dart';
 import 'package:dialog_doc990_mobile/components/common/rounded_button.dart';
-import 'package:dialog_doc990_mobile/components/hospital_dropdown.dart';
 import 'package:dialog_doc990_mobile/components/search_doctor/search_doctor_hospital.dart';
 import 'package:dialog_doc990_mobile/components/search_doctor/search_doctor_name.dart';
 import 'package:dialog_doc990_mobile/components/search_doctor/search_doctor_specialization.dart';
-import 'package:dialog_doc990_mobile/components/specialization_dropdown.dart';
 import 'package:dialog_doc990_mobile/components/search_doctor/search_doctor_datepicker.dart';
-import 'package:dialog_doc990_mobile/components/underline_input_feild.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
-import 'package:dialog_doc990_mobile/models/doctor_model.dart';
 import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

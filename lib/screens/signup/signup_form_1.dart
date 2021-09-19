@@ -88,11 +88,14 @@ class _SignUpForm1State extends State<SignUpForm1> {
               Align(
                 alignment: Alignment.bottomRight,
                 child: RoundedButton(
-                  text: 'NEXT',
+                  text: 'CONTINUE',
                   color: Color(COLOR_PRIMARY),
                   textColor: Colors.white,
                   action: submitAndNavigateTo2ndScreen,
                   height: size.height * 0.072,
+                  icon: Icons.navigate_next,
+                  iconSize: 21,
+                  fontSize: 15,
                   width: size.width,
                 ),
               ),

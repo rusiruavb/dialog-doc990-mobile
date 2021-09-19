@@ -79,7 +79,7 @@ class HomeNavigationMenu extends StatelessWidget {
           buildMenuItem(
             icon: Icons.description,
             text: 'Medicines',
-            onClicked: () => Navigator.pushNamed(context, '/home'),
+            onClicked: () => Navigator.pushNamed(context, '/make-appointment'),
             isNotificationIndicator: false,
           ),
           buildMenuItem(

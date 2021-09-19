@@ -88,8 +88,8 @@ class _RoundedDropDownFeildState extends State<RoundedDropDownFeild> {
                             child: Text(
                               item,
                               style: TextStyle(
-                                fontFamily: 'Larsseit',
-                                fontSize: 20,
+                                fontFamily: FONT_FAMILY_PRIMARY,
+                                fontSize: 18,
                               ),
                             ),
                             value: item,
@@ -99,7 +99,7 @@ class _RoundedDropDownFeildState extends State<RoundedDropDownFeild> {
                     hint: Text(
                       'Select your country',
                       style: TextStyle(
-                        fontFamily: 'Larsseit',
+                        fontFamily: FONT_FAMILY_PRIMARY,
                         fontSize: 20,
                         color: Colors.grey[600],
                       ),
@@ -132,8 +132,8 @@ class _RoundedDropDownFeildState extends State<RoundedDropDownFeild> {
                             child: Text(
                               item,
                               style: TextStyle(
-                                fontFamily: 'Larsseit',
-                                fontSize: 20,
+                                fontFamily: FONT_FAMILY_PRIMARY,
+                                fontSize: 18,
                               ),
                             ),
                             value: item,
@@ -143,8 +143,8 @@ class _RoundedDropDownFeildState extends State<RoundedDropDownFeild> {
                     hint: Text(
                       'Select your title',
                       style: TextStyle(
-                        fontFamily: 'Larsseit',
-                        fontSize: 20,
+                        fontFamily: FONT_FAMILY_PRIMARY,
+                        fontSize: 18,
                         color: Colors.grey[600],
                       ),
                     ),

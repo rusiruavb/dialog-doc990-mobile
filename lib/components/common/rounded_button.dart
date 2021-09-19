@@ -8,6 +8,7 @@ class RoundedButton extends StatefulWidget {
   final double height;
   final double width;
   final IconData icon;
+  final double iconSize;
   final Color textColor;
   final double fontSize;
 
@@ -20,6 +21,7 @@ class RoundedButton extends StatefulWidget {
     this.color,
     this.textColor,
     this.icon,
+    this.iconSize,
     this.fontSize,
   }) : super(key: key);
   @override
@@ -32,6 +34,7 @@ class RoundedButton extends StatefulWidget {
         width: width,
         color: color,
         fontSize: fontSize,
+        iconSize: iconSize,
       );
 }
 
@@ -42,6 +45,7 @@ class _RoundedButtonState extends State<RoundedButton> {
   final double height;
   final double width;
   final IconData icon;
+  final double iconSize;
   final Color textColor;
   final double fontSize;
 
@@ -54,6 +58,7 @@ class _RoundedButtonState extends State<RoundedButton> {
     this.textColor,
     this.color,
     this.fontSize,
+    this.iconSize,
   });
 
   @override
@@ -71,14 +76,6 @@ class _RoundedButtonState extends State<RoundedButton> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ),
               Text(
                 text,
                 style: TextStyle(
@@ -86,6 +83,14 @@ class _RoundedButtonState extends State<RoundedButton> {
                   fontFamily: SF_PRO_FONT,
                   fontSize: fontSize,
                   fontWeight: FontWeight.w100,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: Icon(
+                  icon,
+                  color: Colors.white,
+                  size: iconSize,
                 ),
               ),
             ],
