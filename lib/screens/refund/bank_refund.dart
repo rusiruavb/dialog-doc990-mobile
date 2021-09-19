@@ -102,10 +102,11 @@ class _BankRefundFormState extends State<BankRefundForm> {
                       text: 'CANCEL',
                       color: Color(COLOR_SECONDARY),
                       textColor: Colors.black,
+                      fontSize: 15,
                       action: () {
                         print('object');
                       },
-                      height: size.height * 0.072,
+                      height: 50,
                       width: size.width * 0.4,
                       icon: Icons.send,
                     ),
@@ -119,7 +120,8 @@ class _BankRefundFormState extends State<BankRefundForm> {
                       action: () {
                         print('object');
                       },
-                      height: size.height * 0.072,
+                      height: 50,
+                      fontSize: 15,
                       width: size.width * 0.4,
                       icon: Icons.send,
                     ),

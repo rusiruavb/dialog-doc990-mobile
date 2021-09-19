@@ -9,6 +9,7 @@ class RoundedButton extends StatefulWidget {
   final double width;
   final IconData icon;
   final Color textColor;
+  final double fontSize;
 
   const RoundedButton({
     Key key,
@@ -19,6 +20,7 @@ class RoundedButton extends StatefulWidget {
     this.color,
     this.textColor,
     this.icon,
+    this.fontSize,
   }) : super(key: key);
   @override
   _RoundedButtonState createState() => _RoundedButtonState(
@@ -29,6 +31,7 @@ class RoundedButton extends StatefulWidget {
         textColor: textColor,
         width: width,
         color: color,
+        fontSize: fontSize,
       );
 }
 
@@ -40,6 +43,7 @@ class _RoundedButtonState extends State<RoundedButton> {
   final double width;
   final IconData icon;
   final Color textColor;
+  final double fontSize;
 
   _RoundedButtonState({
     this.text,
@@ -49,6 +53,7 @@ class _RoundedButtonState extends State<RoundedButton> {
     this.icon,
     this.textColor,
     this.color,
+    this.fontSize,
   });
 
   @override
@@ -68,7 +73,7 @@ class _RoundedButtonState extends State<RoundedButton> {
             style: TextStyle(
               color: textColor,
               fontFamily: FONT_FAMILY_PRIMARY,
-              fontSize: 20,
+              fontSize: fontSize,
               fontWeight: FontWeight.w100,
             ),
           ),

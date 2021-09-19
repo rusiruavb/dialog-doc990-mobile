@@ -75,7 +75,8 @@ class _MobileRefundFormState extends State<MobileRefundForm> {
                       action: () {
                         print('object');
                       },
-                      height: size.height * 0.072,
+                      height: 50,
+                      fontSize: 15,
                       width: size.width * 0.4,
                       icon: Icons.send,
                     ),
@@ -89,7 +90,8 @@ class _MobileRefundFormState extends State<MobileRefundForm> {
                       action: () {
                         print('object');
                       },
-                      height: size.height * 0.072,
+                      height: 50,
+                      fontSize: 15,
                       width: size.width * 0.4,
                       icon: Icons.send,
                     ),
