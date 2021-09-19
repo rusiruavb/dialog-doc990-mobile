@@ -15,7 +15,7 @@ class BankRefundScreen extends StatelessWidget {
       key: _scaffoldKey,
       resizeToAvoidBottomInset: true,
       drawer: Container(
-        width: size.width * 0.7,
+        width: size.width * 0.8,
         child: Drawer(
           elevation: 0.0,
           child: HomeNavigationMenu(),

@@ -1,5 +1,5 @@
-import 'package:dialog_doc990_mobile/components/rounded_button.dart';
-import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/components/common/rounded_button.dart';
+import 'package:dialog_doc990_mobile/components/common/rounded_input_field.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/providers/sign_up_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';

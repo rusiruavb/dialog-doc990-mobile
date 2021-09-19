@@ -43,3 +43,6 @@ flutter:
     - family: OpenSans
       fonts:
         - asset: assets/fonts/OpenSans.ttf
+    - family: SF-Pro
+      fonts:
+        - asset: assets/fonts/SF-Text.ttf

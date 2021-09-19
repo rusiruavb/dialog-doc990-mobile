@@ -1,8 +1,8 @@
 import 'package:dialog_doc990_mobile/components/notification_api.dart';
-import 'package:dialog_doc990_mobile/components/rounded_button.dart';
-import 'package:dialog_doc990_mobile/components/rounded_dropdown_feild.dart';
-import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
-import 'package:dialog_doc990_mobile/components/rounded_loading_button.dart';
+import 'package:dialog_doc990_mobile/components/common/rounded_button.dart';
+import 'package:dialog_doc990_mobile/components/common/rounded_dropdown_feild.dart';
+import 'package:dialog_doc990_mobile/components/common/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/components/common/rounded_loading_button.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/providers/sign_up_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';

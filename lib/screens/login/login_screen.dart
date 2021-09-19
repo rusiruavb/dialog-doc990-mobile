@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       key: _scaffoldKey,
       drawer: Container(
-        width: size.width * 0.7,
+        width: size.width * 0.8,
         child: Drawer(
           elevation: 0.0,
           child: HomeNavigationMenu(),

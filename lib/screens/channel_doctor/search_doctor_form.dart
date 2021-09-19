@@ -1,10 +1,13 @@
 import 'dart:convert';
 
 import 'package:dialog_doc990_mobile/api_endpoints.dart';
+import 'package:dialog_doc990_mobile/components/common/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/hospital_dropdown.dart';
-import 'package:dialog_doc990_mobile/components/rounded_button.dart';
+import 'package:dialog_doc990_mobile/components/search_doctor/search_doctor_hospital.dart';
+import 'package:dialog_doc990_mobile/components/search_doctor/search_doctor_name.dart';
+import 'package:dialog_doc990_mobile/components/search_doctor/search_doctor_specialization.dart';
 import 'package:dialog_doc990_mobile/components/specialization_dropdown.dart';
-import 'package:dialog_doc990_mobile/components/underline_datepicker.dart';
+import 'package:dialog_doc990_mobile/components/search_doctor/search_doctor_datepicker.dart';
 import 'package:dialog_doc990_mobile/components/underline_input_feild.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/models/doctor_model.dart';
@@ -49,18 +52,17 @@ class _SeachDoctorFormScreenState extends State<SeachDoctorFormScreen> {
 
     return Container(
       width: size.width,
-      height: size.height,
+      height: size.height * 0.62,
       child: Align(
         alignment: Alignment.topCenter,
         child: Card(
           shape: RoundedRectangleBorder(
             side: BorderSide(color: Colors.white70, width: 1),
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(8),
           ),
           elevation: 3,
           child: Container(
             width: size.width * 0.9,
-            height: size.height * 0.47,
             child: Stack(
               children: <Widget>[
                 Padding(
@@ -68,46 +70,40 @@ class _SeachDoctorFormScreenState extends State<SeachDoctorFormScreen> {
                   child: Column(
                     children: <Widget>[
                       Container(
-                        child: UnderLineTextFeild(
+                        child: SearchDoctorTextField(
+                          isRequiredFeild: false,
                           onChange: (value) {
-                            doctorName = value;
+                            print(value);
                           },
-                          iconText: '👨‍⚕️',
                           text: 'Doctor - Max 20 Characters',
+                          value: '',
                         ),
                       ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
                       Container(
-                        child: UnderLineHospitalDropDownFeild(
-                          text: 'Any Hospital',
-                          iconText: '🏥',
+                        child: SearchDoctorHospitalDrodown(
+                          isRequiredFeild: false,
+                          text: 'Select a hospital',
+                          value: '',
                           onChange: (value) {
-                            hospitalName = value;
+                            print(value);
                           },
                         ),
                       ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
                       Container(
-                        child: UnderLineSpecializationDropDownFeild(
-                          text: 'Any Specialization',
-                          iconText: '🥼',
+                        child: SearchDoctorSpecializationDrodown(
+                          isRequiredFeild: false,
+                          text: 'Select Specialization',
+                          value: '',
                           onChange: (value) {
-                            specilization = value;
+                            print(value);
                           },
                         ),
                       ),
-                      SizedBox(
-                        height: size.height * 0.020,
-                      ),
                       Container(
-                        child: UnderlineDatePickerField(
-                          iconText: '📅',
-                          text: 'Any Date',
+                        child: SearchDoctorDatePickerField(
+                          text: 'Select the date',
                           onChange: (value) {
+                            print(value);
                             selectedDate = value.toString();
                           },
                         ),
@@ -121,8 +117,10 @@ class _SeachDoctorFormScreenState extends State<SeachDoctorFormScreen> {
                           text: 'SEARCH',
                           color: Color(COLOR_PRIMARY),
                           textColor: Colors.white,
-                          height: size.height * 0.073,
-                          width: size.width * 0.31,
+                          fontSize: 16,
+                          height: 52,
+                          width: size.width,
+                          icon: Icons.search,
                           action: validateAndSubmit,
                         ),
                       ),

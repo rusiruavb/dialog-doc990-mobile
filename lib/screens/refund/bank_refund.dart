@@ -1,7 +1,7 @@
-import 'package:dialog_doc990_mobile/components/bank_branch_dropdown.dart';
-import 'package:dialog_doc990_mobile/components/bank_dropdown.dart';
-import 'package:dialog_doc990_mobile/components/rounded_button.dart';
-import 'package:dialog_doc990_mobile/components/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/components/common/rounded_button.dart';
+import 'package:dialog_doc990_mobile/components/common/rounded_input_field.dart';
+import 'package:dialog_doc990_mobile/components/refund/bank_branch_dropdown.dart';
+import 'package:dialog_doc990_mobile/components/refund/bank_dropdown.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
