@@ -23,24 +23,12 @@ class _SeachDoctorFormScreenState extends State<SeachDoctorFormScreen> {
     String selectedDate = '';
 
     void validateAndSubmit() {
-      if (doctorName != '' ||
-          hospitalName != '' ||
-          specilization != '' ||
-          selectedDate != '') {
-        print(doctorName +
-            ' ' +
-            hospitalName +
-            ' ' +
-            specilization +
-            ' ' +
-            selectedDate);
-
-        Provider.of<SearchDoctorProvider>(context, listen: false)
-            .sendDotorSearchData(
-                doctorName, specilization, selectedDate, hospitalName);
-      } else {
-        // display error message
-      }
+      print('###### Submitting data');
+      final data = context.read<SearchDoctorProvider>().sendDotorSearchData(
+          doctorName, specilization, selectedDate, hospitalName, context);
+      data.then((value) {
+        context.read<SearchDoctorProvider>().setDoctors(value);
+      });
     }
 
     return Container(

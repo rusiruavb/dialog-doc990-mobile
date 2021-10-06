@@ -6,11 +6,23 @@ import 'package:http/http.dart' as http;
 import '../api_endpoints.dart';
 
 class SearchDoctorProvider with ChangeNotifier {
-  List<Doctor> _filteredDoctors = [];
+  List<Doctor> filteredDoctors = [];
+  List<Doctor> doctors = [];
+  Future<List<Doctor>> searchedDoctors;
+  int noOfCartItem = 0;
 
-  void sendDotorSearchData(
-      doctorName, specilization, selectedDate, hospitalName) async {
-    _filteredDoctors = [];
+  void setDoctors(List<Doctor> doctors) {
+    print('DATA: ' + doctors.length.toString());
+    this.doctors = doctors;
+  }
+
+  List<Doctor> getDoctors() {
+    return this.doctors;
+  }
+
+  Future<List<Doctor>> sendDotorSearchData(doctorName, specilization,
+      selectedDate, hospitalName, BuildContext context) async {
+    filteredDoctors = [];
     final responseData = await http.post(Uri.parse(GET_SEARCHED_DOCTORS),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -23,7 +35,6 @@ class SearchDoctorProvider with ChangeNotifier {
         }));
 
     if (responseData.statusCode == 200) {
-      print('THis is testing number 1');
       notifyListeners();
       final doctors = jsonDecode(responseData.body)['data']['doctors'] as List;
 
@@ -35,17 +46,27 @@ class SearchDoctorProvider with ChangeNotifier {
           availableDetails: newDoctor.availableDetails,
           notes: newDoctor.notes,
           specialization: newDoctor.specialization,
+          imageUrl: newDoctor.imageUrl,
         );
-        _filteredDoctors.add(doctorInstance);
+        filteredDoctors.add(doctorInstance);
       }
+      Navigator.pushNamed(context, '/searched-doctors');
+      return filteredDoctors;
     } else {
       print('No data');
+      return null;
     }
   }
 
-  List<Doctor> getSearchedDoctors() {
-    if (_filteredDoctors.length > 0) {
-      return _filteredDoctors;
+  Future<List<Doctor>> getSearchedDoctors() {
+    if (filteredDoctors.length > 0) {
+      return filteredDoctors as Future<List<Doctor>>;
+    } else {
+      return null;
     }
+  }
+
+  void incrementCardItem() {
+    this.noOfCartItem += 1;
   }
 }

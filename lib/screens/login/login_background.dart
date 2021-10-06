@@ -1,4 +1,5 @@
 import 'package:dialog_doc990_mobile/constants.dart';
+import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 

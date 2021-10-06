@@ -1,4 +1,5 @@
 import 'package:dialog_doc990_mobile/screens/channel_doctor/channel_doctor_screen.dart';
+import 'package:dialog_doc990_mobile/screens/channel_doctor/search_doctors.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_screen.dart';
 import 'package:dialog_doc990_mobile/screens/login/login_screen.dart';
 import 'package:dialog_doc990_mobile/screens/make_appointment/make_appointment_screen.dart';
@@ -62,6 +63,15 @@ class RouteGenerator {
         return PageRouteBuilder(
           settings: settings,
           pageBuilder: (_, __, ___) => MakeAppointmentScreen(),
+          transitionsBuilder: (_, a, __, c) => FadeTransition(
+            opacity: a,
+            child: c,
+          ),
+        );
+      case '/searched-doctors':
+        return PageRouteBuilder(
+          settings: settings,
+          pageBuilder: (_, __, ___) => SearchedDoctors(),
           transitionsBuilder: (_, a, __, c) => FadeTransition(
             opacity: a,
             child: c,

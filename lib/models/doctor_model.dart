@@ -1,6 +1,7 @@
 class Doctor {
   String name;
   String specialization;
+  String imageUrl;
   List<dynamic> notes = [];
   int appointments;
   List<AvailableDetails> availableDetails = [];
@@ -11,6 +12,7 @@ class Doctor {
     this.notes,
     this.appointments,
     this.availableDetails,
+    this.imageUrl,
   });
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class Doctor {
               ?.toList() ??
           [],
       appointments: json['appointments'],
+      imageUrl: json['imageUrl'],
     );
   }
 }

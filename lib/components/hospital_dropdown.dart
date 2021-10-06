@@ -125,7 +125,6 @@ class UnderlineDropDownContainer extends StatelessWidget {
 
 List<String> hospitals = [
   'Any Hospital',
-  'hospital 1',
   'Asia Hospital - Kotte',
   'Asia Hospital - Maharagama',
   'Asiri Central Hospital - Colombo 10',

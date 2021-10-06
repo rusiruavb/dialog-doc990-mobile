@@ -108,7 +108,6 @@ class _BankRefundFormState extends State<BankRefundForm> {
                       },
                       height: 50,
                       width: size.width * 0.4,
-                      icon: Icons.send,
                     ),
                   ),
                   Padding(
@@ -123,7 +122,6 @@ class _BankRefundFormState extends State<BankRefundForm> {
                       height: 50,
                       fontSize: 15,
                       width: size.width * 0.4,
-                      icon: Icons.send,
                     ),
                   ),
                 ],

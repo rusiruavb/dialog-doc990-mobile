@@ -76,21 +76,16 @@ class _RoundedButtonState extends State<RoundedButton> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                text,
-                style: TextStyle(
-                  color: textColor,
-                  fontFamily: SF_PRO_FONT,
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.w100,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 5),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: iconSize,
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: textColor,
+                    fontFamily: SF_PRO_FONT,
+                    fontSize: fontSize,
+                    fontWeight: FontWeight.w100,
+                  ),
                 ),
               ),
             ],

@@ -1,12 +1,24 @@
 import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
 import 'package:dialog_doc990_mobile/screens/channel_doctor/search_doctor_form.dart';
+import 'package:dialog_doc990_mobile/screens/channel_doctor/search_doctors.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_navigation_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SearchDoctorScreen extends StatelessWidget {
+class SearchDoctorScreen extends StatefulWidget {
+  @override
+  _SearchDoctorScreenState createState() => _SearchDoctorScreenState();
+}
+
+class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
   final _scaffoldKey =
       GlobalKey<ScaffoldState>(debugLabel: 'channelDoctorScreenKey');
+
+  @override
+  void didUpdateWidget(SearchDoctorScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('@@@@@@@@@@');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,24 +43,6 @@ class SearchDoctorScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: 100),
                     child: SeachDoctorFormScreen(),
                   ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child:
-                        Provider.of<SearchDoctorProvider>(context, listen: true)
-                                        .getSearchedDoctors() !=
-                                    null &&
-                                Provider.of<SearchDoctorProvider>(context,
-                                            listen: true)
-                                        .getSearchedDoctors()
-                                        .length >
-                                    0
-                            ? Text(Provider.of<SearchDoctorProvider>(context,
-                                    listen: true)
-                                .getSearchedDoctors()
-                                .length
-                                .toString())
-                            : Text(''),
-                  )
                 ],
               ),
             ),
