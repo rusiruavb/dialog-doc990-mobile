@@ -9,7 +9,17 @@ class SearchDoctorProvider with ChangeNotifier {
   List<Doctor> filteredDoctors = [];
   List<Doctor> doctors = [];
   Future<List<Doctor>> searchedDoctors;
+  Doctor selectedDoctor;
   int noOfCartItem = 0;
+
+  void setSelectedDoctor(Doctor doctor) {
+    this.selectedDoctor = doctor;
+    print('##### Doctor: ' + selectedDoctor.name);
+  }
+
+  Doctor getSelectedDoctor() {
+    return this.selectedDoctor;
+  }
 
   void setDoctors(List<Doctor> doctors) {
     print('DATA: ' + doctors.length.toString());

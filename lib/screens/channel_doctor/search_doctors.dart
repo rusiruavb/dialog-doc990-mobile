@@ -3,7 +3,6 @@ import 'package:dialog_doc990_mobile/models/doctor_model.dart';
 import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_navigation_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class SearchedDoctors extends StatefulWidget {
@@ -167,7 +166,16 @@ class _SearchDoctorItem extends State<SearchDoctorItem> {
         ),
         child: InkWell(
           onTap: () {
-            print('Clicked');
+            var doctor = new Doctor(
+              name: name,
+              imageUrl: imageUrl,
+              appointments: appointments,
+              availableDetails: availableDetails,
+              notes: notes,
+              specialization: specialization,
+            );
+            context.read<SearchDoctorProvider>().setSelectedDoctor(doctor);
+            Navigator.pushNamed(context, '/make-appointment');
           },
           child: Row(
             children: <Widget>[

@@ -1,8 +1,11 @@
 import 'package:dialog_doc990_mobile/constants.dart';
+import 'package:dialog_doc990_mobile/models/doctor_model.dart';
+import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
 import 'package:dialog_doc990_mobile/screens/channel_doctor/search_doctor_form.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_navigation_menu.dart';
 import 'package:dialog_doc990_mobile/screens/make_appointment/make_appointment_form.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MakeAppointmentScreen extends StatefulWidget {
   @override
@@ -10,8 +13,15 @@ class MakeAppointmentScreen extends StatefulWidget {
 }
 
 class _MakeAppointmentScreenState extends State<MakeAppointmentScreen> {
+  Doctor doctor;
   final _scaffoldKey =
       GlobalKey<ScaffoldState>(debugLabel: 'channelDoctorScreenKey');
+
+  @override
+  void initState() {
+    super.initState();
+    doctor = context.read<SearchDoctorProvider>().getSelectedDoctor();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +52,7 @@ class _MakeAppointmentScreenState extends State<MakeAppointmentScreen> {
                           children: <Widget>[
                             ClipOval(
                               child: Image.network(
-                                'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                                doctor.imageUrl,
                                 width: 100,
                                 height: 100,
                                 fit: BoxFit.cover,
@@ -56,7 +66,7 @@ class _MakeAppointmentScreenState extends State<MakeAppointmentScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                'Dr. Kalum Rathnayake',
+                                'Dr. ' + doctor.name,
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 20,
@@ -64,28 +74,30 @@ class _MakeAppointmentScreenState extends State<MakeAppointmentScreen> {
                                 ),
                               ),
                               Text(
-                                'Paediatraican',
+                                doctor.specialization,
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 15,
                                 ),
                               ),
                               Text(
-                                'Asia Hospital - Maharagama',
+                                doctor.availableDetails[0].hospitalName,
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
                                 ),
                               ),
                               Text(
-                                '11.00 AM - 1.00 PM',
+                                doctor.availableDetails[0].dateTime
+                                    .split("T")[0],
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
                                 ),
                               ),
                               Text(
-                                'Active Appointments: 01',
+                                'Active Appointments: ' +
+                                    doctor.appointments.toString(),
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
