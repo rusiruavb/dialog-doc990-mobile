@@ -20,24 +20,25 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
   bool _isPDFChecked = false;
 
   void validateFormAndSubmit() {
-    if (_appointmentFormKey.currentState.validate()) {
-      final provider = context.read<AppointmentProvider>();
-      var appointment = {
-        'time': provider.getTime(),
-        'title': provider.getTitle(),
-        'name': provider.getName(),
-        'email': provider.getEmail(),
-        'address': provider.getAddress(),
-        'phoneNumber': provider.getPhoneNumber(),
-        'nic': provider.getNIC(),
-        'city': provider.getCity(),
-        'province': provider.getProvince(),
-        'isChargeChecked': provider.getChargeCheck(),
-        'isPDFChecked': provider.getPDFCheck(),
-      };
-
-      // call send data to backend function
-    }
+    Navigator.pushNamed(context, '/appointment-summary');
+    // if (_appointmentFormKey.currentState.validate()) {
+    //   final provider = context.read<AppointmentProvider>();
+    //   var appointment = {
+    //     'time': provider.getTime(),
+    //     'title': provider.getTitle(),
+    //     'name': provider.getName(),
+    //     'email': provider.getEmail(),
+    //     'address': provider.getAddress(),
+    //     'phoneNumber': provider.getPhoneNumber(),
+    //     'nic': provider.getNIC(),
+    //     'city': provider.getCity(),
+    //     'province': provider.getProvince(),
+    //     'isChargeChecked': provider.getChargeCheck(),
+    //     'isPDFChecked': provider.getPDFCheck(),
+    //   }; // call send data to backend function
+    // } else {
+    //   Navigator.pushNamed(context, '/appointment-summary');
+    // }
   }
 
   @override

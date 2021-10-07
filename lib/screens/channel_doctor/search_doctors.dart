@@ -162,7 +162,7 @@ class _SearchDoctorItem extends State<SearchDoctorItem> {
         clipBehavior: Clip.antiAlias,
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(15),
         ),
         child: InkWell(
           onTap: () {
@@ -182,8 +182,9 @@ class _SearchDoctorItem extends State<SearchDoctorItem> {
               Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: ClipOval(
+                    padding: const EdgeInsets.all(10.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
                       child: Image.network(
                         imageUrl,
                         width: 90,

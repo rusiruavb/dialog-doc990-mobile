@@ -39,9 +39,6 @@ class SearchDoctorProvider with ChangeNotifier {
         },
         body: jsonEncode(<String, String>{
           'name': doctorName,
-          'specialization': specilization,
-          'date': selectedDate,
-          'hospital': hospitalName,
         }));
 
     if (responseData.statusCode == 200) {
