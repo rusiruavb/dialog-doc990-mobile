@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/screens/appointment_payment/appointment_payment_form.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_navigation_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,9 +31,11 @@ class _AppointmentPaymentScreenState extends State<AppointmentPaymentScreen> {
       ),
       body: Stack(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(100.0),
-            child: Text('THis is the payment page'),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 100, left: 10),
+              child: AppointmentPaymentContent(),
+            ),
           ),
           Container(
             height: size.height * 0.12,

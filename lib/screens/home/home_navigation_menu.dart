@@ -77,12 +77,6 @@ class HomeNavigationMenu extends StatelessWidget {
             isNotificationIndicator: true,
           ),
           buildMenuItem(
-            icon: Icons.description,
-            text: 'Medicines',
-            onClicked: () => Navigator.pushNamed(context, '/make-appointment'),
-            isNotificationIndicator: false,
-          ),
-          buildMenuItem(
             icon: Icons.sync,
             text: 'Refund Request',
             onClicked: () => Navigator.pushNamed(context, '/refund'),

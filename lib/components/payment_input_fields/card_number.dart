@@ -1,32 +1,24 @@
 import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
-class RoundedTextFeild extends StatefulWidget {
+class CardNumberTextField extends StatefulWidget {
   final ValueChanged<String> onChange;
-  final bool isPassword;
   final String text;
-  final bool isNumber;
   final IconData icon;
   final String value;
-  final bool isPhoneNumber;
   final bool isRequiredFeild;
-  const RoundedTextFeild({
+  const CardNumberTextField({
     Key key,
     this.onChange,
-    this.isPassword,
-    this.isNumber,
     this.icon,
     this.value,
     this.text,
-    this.isPhoneNumber = false,
     this.isRequiredFeild,
   }) : super(key: key);
   @override
-  _RoundedTextFeildState createState() => _RoundedTextFeildState(
-        isNumber: isNumber,
+  _CardNumberTextFieldState createState() => _CardNumberTextFieldState(
         icon: icon,
-        isPassword: isPassword,
-        isPhoneNumber: isPhoneNumber,
         onChange: onChange,
         text: text,
         value: value,
@@ -34,28 +26,26 @@ class RoundedTextFeild extends StatefulWidget {
       );
 }
 
-class _RoundedTextFeildState extends State<RoundedTextFeild> {
+class _CardNumberTextFieldState extends State<CardNumberTextField> {
   final ValueChanged<String> onChange;
-  final bool isPassword;
   final String text;
   final bool isNumber;
   final String value;
   final IconData icon;
-  final bool isPhoneNumber;
   final bool isRequiredFeild;
   bool _isFieldValid;
   bool _isObscure = true;
-  _RoundedTextFeildState({
+
+  _CardNumberTextFieldState({
     Key key,
     this.onChange,
-    this.isPassword,
     this.isNumber,
     this.icon,
     this.value,
     this.text,
-    this.isPhoneNumber = false,
     this.isRequiredFeild,
   });
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -68,7 +58,7 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
             style: TextStyle(
               fontFamily: FONT_FAMILY_PRIMARY,
               fontSize: 15,
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.w600,
             ),
             textAlign: TextAlign.left,
           ),
@@ -77,7 +67,6 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
           ),
           TextFieldContainer(
             child: TextFormField(
-              initialValue: value,
               validator: (value) {
                 if (value.isEmpty) {
                   setState(() {
@@ -91,43 +80,23 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
                   return null;
                 }
               },
-              obscureText: isPassword ? _isObscure : false,
-              maxLength: isPhoneNumber ? 10 : 200,
-              keyboardType:
-                  isNumber ? TextInputType.number : TextInputType.text,
-              style: TextStyle(fontFamily: FONT_FAMILY_PRIMARY, fontSize: 18),
-              onChanged: onChange,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 border: InputBorder.none,
-                counterText: '',
-                suffixIcon: isPassword
-                    ? IconButton(
-                        icon: Align(
-                          alignment: Alignment.centerRight,
-                          child: Icon(
-                            _isObscure
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Color(0xff4a4a4a),
-                          ),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isObscure = !_isObscure;
-                          });
-                        },
-                      )
-                    : IconButton(
-                        icon: Align(
-                          child: Icon(
-                            icon,
-                            color: Color(INPUT_ICON_COLOR),
-                          ),
-                          alignment: Alignment.centerRight,
-                        ),
-                        onPressed: () {},
-                      ),
+                hintText: value,
               ),
+              onChanged: onChange,
+              style: TextStyle(
+                fontFamily: FONT_FAMILY_PRIMARY,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey[800],
+              ),
+              inputFormatters: [
+                CreditCardNumberInputFormatter(
+                  useSeparators: true,
+                )
+              ],
             ),
           ),
           isRequiredFeild != null &&
