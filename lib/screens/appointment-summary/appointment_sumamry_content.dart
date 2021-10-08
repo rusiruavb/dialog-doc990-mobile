@@ -1,6 +1,7 @@
 import 'package:dialog_doc990_mobile/components/common/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/common/rounded_input_field.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
+import 'package:dialog_doc990_mobile/providers/appointment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +19,7 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final provider = context.read<AppointmentProvider>();
 
     return Container(
       child: Column(
@@ -86,7 +88,7 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                                 ),
                               ),
                               Text(
-                                '23423443',
+                                provider.referenceNo,
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -112,7 +114,7 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                                 ),
                               ),
                               Text(
-                                'Rusiru Bandara',
+                                provider.patientName,
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -138,7 +140,7 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                                 ),
                               ),
                               Text(
-                                '0776632436',
+                                provider.phoneNumber,
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -164,7 +166,7 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                                 ),
                               ),
                               Text(
-                                '983343545V',
+                                provider.nic,
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -190,7 +192,7 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                                 ),
                               ),
                               Text(
-                                'rusiru@gmail.com',
+                                provider.email,
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -216,7 +218,33 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                                 ),
                               ),
                               Text(
-                                'Asiri Hospital - Maharagama',
+                                provider.hospitalName.split(' - ')[0],
+                                style: TextStyle(
+                                  fontFamily: FONT_FAMILY_PRIMARY,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5, bottom: 5),
+                          child: Row(
+                            // Hospital
+                            children: <Widget>[
+                              Icon(
+                                Icons.location_city,
+                                size: 18,
+                              ),
+                              Text(
+                                'Place: ',
+                                style: TextStyle(
+                                  fontFamily: FONT_FAMILY_PRIMARY,
+                                  fontSize: 17,
+                                ),
+                              ),
+                              Text(
+                                provider.hospitalName.split(' - ')[1],
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -268,7 +296,9 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                                 ),
                               ),
                               Text(
-                                '10-05-2021 @ 12.30 PM',
+                                provider.date.split('T')[0] +
+                                    ' @ ' +
+                                    provider.selectTime,
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -301,20 +331,28 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                               const EdgeInsets.only(left: 5, bottom: 5, top: 5),
                           child: Row(
                             // Reference No.
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Icon(
-                                Icons.attach_money,
-                                size: 18,
-                              ),
-                              Text(
-                                'Doctor Charge: ',
-                                style: TextStyle(
-                                  fontFamily: FONT_FAMILY_PRIMARY,
-                                  fontSize: 17,
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.monetization_on,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      'Doctor Charge: ',
+                                      style: TextStyle(
+                                        fontFamily: FONT_FAMILY_PRIMARY,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Text(
-                                'LKR 1000.00',
+                                'Rs.' +
+                                    provider.doctorCharge.toStringAsFixed(2),
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -328,20 +366,28 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                               const EdgeInsets.only(left: 5, bottom: 5, top: 5),
                           child: Row(
                             // Reference No.
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Icon(
-                                Icons.attach_money,
-                                size: 18,
-                              ),
-                              Text(
-                                'Hospitl Charge: ',
-                                style: TextStyle(
-                                  fontFamily: FONT_FAMILY_PRIMARY,
-                                  fontSize: 17,
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.monetization_on,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      'Hospitl Charge: ',
+                                      style: TextStyle(
+                                        fontFamily: FONT_FAMILY_PRIMARY,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Text(
-                                'LKR 300.00',
+                                'Rs.' +
+                                    provider.hospitalPrice.toStringAsFixed(2),
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -355,20 +401,27 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                               const EdgeInsets.only(left: 5, bottom: 5, top: 5),
                           child: Row(
                             // Reference No.
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Icon(
-                                Icons.attach_money,
-                                size: 18,
-                              ),
-                              Text(
-                                'Refund Charge: ',
-                                style: TextStyle(
-                                  fontFamily: FONT_FAMILY_PRIMARY,
-                                  fontSize: 17,
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.monetization_on,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      'Refund Charge: ',
+                                      style: TextStyle(
+                                        fontFamily: FONT_FAMILY_PRIMARY,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Text(
-                                'LKR 250.00',
+                                'Rs.' + provider.refundChage.toStringAsFixed(2),
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -382,20 +435,28 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                               const EdgeInsets.only(left: 5, bottom: 5, top: 5),
                           child: Row(
                             // Reference No.
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Icon(
-                                Icons.attach_money,
-                                size: 18,
-                              ),
-                              Text(
-                                'Booking Charge: ',
-                                style: TextStyle(
-                                  fontFamily: FONT_FAMILY_PRIMARY,
-                                  fontSize: 17,
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.monetization_on,
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      'Booking Charge: ',
+                                      style: TextStyle(
+                                        fontFamily: FONT_FAMILY_PRIMARY,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Text(
-                                'LKR 99.00',
+                                'Rs.' +
+                                    provider.bookingCharge.toStringAsFixed(2),
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
                                   fontSize: 17,
@@ -409,23 +470,35 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                               const EdgeInsets.only(left: 5, bottom: 5, top: 5),
                           child: Row(
                             // Reference No.
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Icon(
-                                Icons.attach_money,
-                                size: 18,
-                              ),
-                              Text(
-                                'Total: ',
-                                style: TextStyle(
-                                  fontFamily: FONT_FAMILY_PRIMARY,
-                                  fontSize: 17,
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.local_atm,
+                                      size: 28,
+                                    ),
+                                    Text(
+                                      'Total: ',
+                                      style: TextStyle(
+                                        fontFamily: FONT_FAMILY_PRIMARY,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               Text(
-                                'LKR 1349.00',
+                                'Rs.' +
+                                    provider
+                                        .calculateTotalPayment()
+                                        .toStringAsFixed(2),
                                 style: TextStyle(
                                   fontFamily: FONT_FAMILY_PRIMARY,
-                                  fontSize: 17,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],
@@ -568,12 +641,13 @@ class _AppointmentSummaryContentState extends State<AppointmentSummaryContent> {
                           child: RoundedButton(
                             action: () {
                               print('object');
+                              Navigator.pushNamed(context, '/payment');
                             },
                             color: Color(COLOR_PRIMARY),
                             fontSize: 15,
                             height: 50,
                             width: size.width * 0.4,
-                            text: 'SUBMIT',
+                            text: 'CONTINUE',
                             textColor: Colors.white,
                           ),
                         )

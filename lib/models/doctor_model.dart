@@ -33,16 +33,19 @@ class Doctor {
 class AvailableDetails {
   final String hospitalName;
   final String dateTime;
+  final int doctorCharge;
 
   AvailableDetails({
     this.hospitalName,
     this.dateTime,
+    this.doctorCharge,
   });
 
   factory AvailableDetails.fromJson(Map<String, dynamic> json) {
     return AvailableDetails(
       hospitalName: json['hospitalName'],
       dateTime: json['dateTime'],
+      doctorCharge: json['doctorCharge'],
     );
   }
 }

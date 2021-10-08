@@ -3,6 +3,7 @@ import 'package:dialog_doc990_mobile/screens/channel_doctor/channel_doctor_scree
 import 'package:dialog_doc990_mobile/screens/channel_doctor/search_doctors.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_screen.dart';
 import 'package:dialog_doc990_mobile/screens/login/login_screen.dart';
+import 'package:dialog_doc990_mobile/screens/appointment_payment/appointment_payment_screen.dart';
 import 'package:dialog_doc990_mobile/screens/make_appointment/make_appointment_screen.dart';
 import 'package:dialog_doc990_mobile/screens/refund/refund_page.dart';
 import 'package:dialog_doc990_mobile/screens/refund/refund_screen.dart';
@@ -82,6 +83,15 @@ class RouteGenerator {
         return PageRouteBuilder(
           settings: settings,
           pageBuilder: (_, __, ___) => AppointmentSummary(),
+          transitionsBuilder: (_, a, __, c) => FadeTransition(
+            opacity: a,
+            child: c,
+          ),
+        );
+      case '/payment':
+        return PageRouteBuilder(
+          settings: settings,
+          pageBuilder: (_, __, ___) => AppointmentPaymentScreen(),
           transitionsBuilder: (_, a, __, c) => FadeTransition(
             opacity: a,
             child: c,

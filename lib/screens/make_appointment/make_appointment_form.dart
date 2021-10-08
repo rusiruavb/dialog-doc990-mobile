@@ -5,6 +5,7 @@ import 'package:dialog_doc990_mobile/components/make_appointment/province_select
 import 'package:dialog_doc990_mobile/components/make_appointment/time_select_dropdown.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/providers/appointment_provider.dart';
+import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,25 +21,31 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
   bool _isPDFChecked = false;
 
   void validateFormAndSubmit() {
-    Navigator.pushNamed(context, '/appointment-summary');
-    // if (_appointmentFormKey.currentState.validate()) {
-    //   final provider = context.read<AppointmentProvider>();
-    //   var appointment = {
-    //     'time': provider.getTime(),
-    //     'title': provider.getTitle(),
-    //     'name': provider.getName(),
-    //     'email': provider.getEmail(),
-    //     'address': provider.getAddress(),
-    //     'phoneNumber': provider.getPhoneNumber(),
-    //     'nic': provider.getNIC(),
-    //     'city': provider.getCity(),
-    //     'province': provider.getProvince(),
-    //     'isChargeChecked': provider.getChargeCheck(),
-    //     'isPDFChecked': provider.getPDFCheck(),
-    //   }; // call send data to backend function
-    // } else {
-    //   Navigator.pushNamed(context, '/appointment-summary');
-    // }
+    if (_appointmentFormKey.currentState.validate()) {
+      final provider = context.read<AppointmentProvider>();
+      final doctor = context.read<SearchDoctorProvider>().getSelectedDoctor();
+      provider.hospitalName = doctor.availableDetails[0].hospitalName;
+      provider.date = doctor.availableDetails[0].dateTime;
+      provider.doctorCharge =
+          doctor.availableDetails[0].doctorCharge.toDouble();
+      var appointment = {
+        'time': provider.selectTime,
+        'name': provider.patientTitle.split(' ')[1] + provider.patientName,
+        'email': provider.email,
+        'address': provider.address,
+        'phoneNumber': provider.phoneNumber,
+        'nic': provider.nic,
+        'city': provider.city,
+        'province': provider.province,
+        'isChargeChecked': provider.isServiceChargeChecked,
+        'isPDFChecked': provider.isPDFReceiptChecked,
+        'referenceNo': provider.generateReferenceNo(),
+        'hospitalName': provider.hospitalName,
+        'date': provider.date,
+      }; // call send data to backend function
+      print(appointment);
+      Navigator.pushNamed(context, '/appointment-summary');
+    }
   }
 
   @override
@@ -75,17 +82,17 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
                   isRequiredFeild: true,
                   text: 'Select Appointment Time',
                   onChange: (value) {
-                    provider.setTime(value);
+                    provider.selectTime = value;
                   },
-                  value: provider.getTime(),
+                  value: provider.selectTime,
                 ),
                 RoundedDropDownFeild(
                   isRequiredFeild: true,
                   isCountry: false,
                   text: 'Your Title',
-                  value: provider.getTitle(),
+                  value: provider.patientTitle,
                   onChange: (value) {
-                    provider.setTitle(value);
+                    provider.patientTitle = value;
                   },
                 ),
                 RoundedTextFeild(
@@ -94,10 +101,10 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
                   isNumber: false,
                   icon: Icons.person,
                   isPhoneNumber: false,
-                  value: provider.getName(),
+                  value: provider.patientName,
                   text: 'Your Name',
                   onChange: (name) {
-                    provider.setName(name);
+                    provider.patientName = name;
                   },
                 ),
                 RoundedTextFeild(
@@ -106,22 +113,22 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
                   isNumber: false,
                   icon: Icons.email,
                   isPhoneNumber: false,
-                  value: provider.getEmail(),
+                  value: provider.email,
                   text: 'Email Address',
                   onChange: (email) {
-                    provider.setEmail(email);
+                    provider.email = email;
                   },
                 ),
                 RoundedTextFeild(
                   isRequiredFeild: true,
                   isPassword: false,
-                  isNumber: false,
+                  isNumber: true,
                   icon: Icons.phone,
                   isPhoneNumber: true,
-                  value: provider.getPhoneNumber(),
+                  value: provider.phoneNumber,
                   text: 'Phone Number',
                   onChange: (phoneNumber) {
-                    provider.setPhoneNumber(phoneNumber);
+                    provider.phoneNumber = phoneNumber;
                   },
                 ),
                 RoundedTextFeild(
@@ -130,10 +137,10 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
                   isNumber: false,
                   icon: Icons.credit_card,
                   isPhoneNumber: false,
-                  value: provider.getNIC(),
+                  value: provider.nic,
                   text: 'NIC/ Passport Number',
                   onChange: (nic) {
-                    provider.setNIC(nic);
+                    provider.nic = nic;
                   },
                 ),
                 RoundedTextFeild(
@@ -142,10 +149,10 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
                   isNumber: false,
                   icon: Icons.home,
                   isPhoneNumber: false,
-                  value: provider.getAddress(),
+                  value: provider.address,
                   text: 'Address',
                   onChange: (address) {
-                    provider.setAddress(address);
+                    provider.address = address;
                   },
                 ),
                 RoundedTextFeild(
@@ -154,18 +161,18 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
                   isNumber: false,
                   icon: Icons.location_city,
                   isPhoneNumber: false,
-                  value: provider.getCity(),
+                  value: provider.city,
                   text: 'City',
                   onChange: (city) {
-                    provider.setCity(city);
+                    provider.city = city;
                   },
                 ),
                 ProvinceDropdown(
                   isRequiredFeild: true,
                   text: 'Province',
-                  value: provider.getProvince(),
+                  value: provider.province,
                   onChange: (value) {
-                    provider.setProvince(value);
+                    provider.province = value;
                   },
                 ),
                 Row(
@@ -174,13 +181,14 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
                     Checkbox(
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.resolveWith(getColor),
-                      value: provider.getChargeCheck(),
+                      value: provider.isServiceChargeChecked,
                       onChanged: (value) {
                         setState(() {
                           _isAdditionalChargeChecked =
                               !_isAdditionalChargeChecked;
                         });
-                        provider.setChargeCheck(_isAdditionalChargeChecked);
+                        provider.isServiceChargeChecked =
+                            _isAdditionalChargeChecked;
                       },
                     ),
                     Text(
@@ -196,12 +204,12 @@ class _MakeAppintmentFormState extends State<MakeAppointmentForm> {
                     Checkbox(
                       checkColor: Colors.white,
                       fillColor: MaterialStateProperty.resolveWith(getColor),
-                      value: provider.getPDFCheck(),
+                      value: provider.isPDFReceiptChecked,
                       onChanged: (value) {
                         setState(() {
                           _isPDFChecked = !_isPDFChecked;
                         });
-                        provider.setPDFCheck(_isPDFChecked);
+                        provider.isPDFReceiptChecked = _isPDFChecked;
                       },
                     ),
                     SizedBox(
