@@ -1,3 +1,4 @@
+import 'package:dialog_doc990_mobile/components/common/rounded_gender_dropdown.dart';
 import 'package:dialog_doc990_mobile/components/notification_api.dart';
 import 'package:dialog_doc990_mobile/components/common/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/common/rounded_dropdown_feild.dart';
@@ -27,38 +28,17 @@ class _SignUpForm2State extends State<SignUpForm2> {
 
   void validateAndSubmitForm() {
     if (_signUpForm2Key.currentState.validate()) {
-      String email = context.read<SignUpProvider>().getEmail();
-      String phoneNumber = context.read<SignUpProvider>().getPhoneNumber();
-      String country =
-          context.read<SignUpProvider>().getCountry().split(' ')[1];
-      String title = context.read<SignUpProvider>().getTitle().split(' ')[1];
-      String name = context.read<SignUpProvider>().getName();
-      String nic = context.read<SignUpProvider>().getNIC();
-      String password = context.read<SignUpProvider>().getPassword();
-
-      var userData = {
-        'email': email,
-        'phoneNumber': phoneNumber,
-        'country': country,
-        'title': title,
-        'name': name,
-        'nic': nic,
-        'password': password,
-      };
-
-      print(userData);
-
+      final provider = context.read<SignUpProvider>();
       // send data to backend
-
-      // reset sign up state values
-      context.read<SignUpProvider>().resetValues();
+      provider.createUserAccount(context);
 
       NotificationAPI.showNotification(
-        title: 'Hi, ${name}',
+        title: 'Hi, ${provider.name}',
         body: 'Your account has been created sucessfully.',
-        payload: 'Heeeee',
       );
       // navigate to the home screen
+      // reset sign up state values
+      context.read<SignUpProvider>().resetValues();
       Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     }
   }
@@ -66,6 +46,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final userProvider = context.read<SignUpProvider>();
 
     return Container(
       key: WidgetKeys.signUpForm2Key,
@@ -97,22 +78,28 @@ class _SignUpForm2State extends State<SignUpForm2> {
               RoundedDropDownFeild(
                 text: 'Your Country',
                 isCountry: true,
-                value: context.read<SignUpProvider>().getCountry(),
+                value: userProvider.country,
                 isRequiredFeild: true,
                 onChange: (value) {
-                  context.read<SignUpProvider>().setCountry(value);
-                  print('Country ' + value);
+                  userProvider.country = value;
                 },
               ),
               RoundedDropDownFeild(
                 isRequiredFeild: true,
                 isCountry: false,
                 text: 'Your Title',
-                value: context.read<SignUpProvider>().getTitle(),
+                value: userProvider.title,
                 onChange: (value) {
-                  context.read<SignUpProvider>().setTitle(value);
-                  print('Title ' + value);
+                  userProvider.title = value;
                 },
+              ),
+              GenderDropdown(
+                text: 'Your Gender',
+                onChange: (value) {
+                  userProvider.gender = value;
+                },
+                isRequiredFeild: true,
+                value: userProvider.gender,
               ),
               RoundedTextFeild(
                 isRequiredFeild: true,
@@ -120,10 +107,10 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 isNumber: false,
                 icon: Icons.person,
                 isPhoneNumber: false,
-                value: context.read<SignUpProvider>().getName(),
+                value: userProvider.name,
                 text: 'Your Name',
                 onChange: (text) {
-                  context.read<SignUpProvider>().setName(text);
+                  userProvider.name = text;
                 },
               ),
               RoundedTextFeild(
@@ -132,10 +119,10 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 isNumber: true,
                 icon: Icons.credit_card,
                 isPhoneNumber: false,
-                value: context.read<SignUpProvider>().getNIC(),
+                value: userProvider.nic,
                 text: 'NIC/ Passport Number',
                 onChange: (text) {
-                  context.read<SignUpProvider>().setNIC(text);
+                  userProvider.nic = text;
                 },
               ),
               RoundedTextFeild(
@@ -145,9 +132,9 @@ class _SignUpForm2State extends State<SignUpForm2> {
                 icon: Icons.password,
                 isPhoneNumber: false,
                 text: 'Password',
-                value: context.read<SignUpProvider>().getPassword(),
+                value: userProvider.password,
                 onChange: (text) {
-                  context.read<SignUpProvider>().setPassword(text);
+                  userProvider.password = text;
                 },
               ),
               SizedBox(

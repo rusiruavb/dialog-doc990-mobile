@@ -19,8 +19,8 @@ class _SignUpForm1State extends State<SignUpForm1> {
 
   void submitAndNavigateTo2ndScreen() {
     if (_signUpFrom1Key.currentState.validate() &&
-        context.read<SignUpProvider>().getEmail() != '' &&
-        context.read<SignUpProvider>().getPhoneNumber() != '') {
+        context.read<SignUpProvider>().email != '' &&
+        context.read<SignUpProvider>().phoneNumber != '') {
       Navigator.push(
         context,
         PageTransition(
@@ -34,6 +34,7 @@ class _SignUpForm1State extends State<SignUpForm1> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final userProvider = context.read<SignUpProvider>();
 
     return Container(
       key: WidgetKeys.signUpForm1Key,
@@ -65,9 +66,9 @@ class _SignUpForm1State extends State<SignUpForm1> {
                 isPhoneNumber: false,
                 icon: Icons.email,
                 text: 'Email Address',
-                value: context.read<SignUpProvider>().getEmail(),
+                value: userProvider.email,
                 onChange: (text) {
-                  context.read<SignUpProvider>().setEmail(text);
+                  userProvider.email = text;
                 },
               ),
               RoundedTextFeild(
@@ -77,9 +78,9 @@ class _SignUpForm1State extends State<SignUpForm1> {
                 isPhoneNumber: true,
                 icon: Icons.phone,
                 text: 'Your Phone Number',
-                value: context.read<SignUpProvider>().getPhoneNumber(),
+                value: userProvider.phoneNumber,
                 onChange: (text) {
-                  context.read<SignUpProvider>().setPhoneNumber(text);
+                  userProvider.phoneNumber = text;
                 },
               ),
               SizedBox(

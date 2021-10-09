@@ -1,85 +1,59 @@
+import 'dart:convert';
+
+import 'package:dialog_doc990_mobile/api_endpoints.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpProvider with ChangeNotifier {
-  String _email = '';
-  String _phoneNumber = '';
-  String _country = '';
-  String _title = '';
-  String _name = '';
-  String _nic = '';
-  String _password = '';
-
-  void setEmail(String email) {
-    _email = email;
-    notifyListeners();
-  }
-
-  void setPhoneNumber(String phoneNumber) {
-    _phoneNumber = phoneNumber;
-    notifyListeners();
-  }
-
-  void setCountry(String country) {
-    // var countryData = country.split(' ');
-    _country = country;
-    notifyListeners();
-  }
-
-  void setTitle(String title) {
-    _title = title;
-    notifyListeners();
-  }
-
-  void setName(String name) {
-    _name = name;
-    notifyListeners();
-  }
-
-  void setNIC(String nic) {
-    _nic = nic;
-    notifyListeners();
-  }
-
-  void setPassword(String password) {
-    _password = password;
-    notifyListeners();
-  }
-
-  String getEmail() {
-    return _email;
-  }
-
-  String getPhoneNumber() {
-    return _phoneNumber;
-  }
-
-  String getCountry() {
-    return _country;
-  }
-
-  String getTitle() {
-    return _title;
-  }
-
-  String getName() {
-    return _name;
-  }
-
-  String getNIC() {
-    return _nic;
-  }
-
-  String getPassword() {
-    return _password;
-  }
+  String email = '';
+  String phoneNumber = '';
+  String country = '';
+  String title = '';
+  String name = '';
+  String nic = '';
+  String password = '';
+  String gender = '';
 
   void resetValues() {
-    _email = '';
-    _country = '';
-    _phoneNumber = '';
-    _nic = '';
-    _title = '';
-    _password = '';
-    _name = '';
+    email = '';
+    country = '';
+    phoneNumber = '';
+    nic = '';
+    title = '';
+    password = '';
+    name = '';
+    gender = '';
+  }
+
+  void createUserAccount(BuildContext context) async {
+    final response = await http.post(
+      Uri.parse(CREATE_USER_ACCOUNT),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: jsonEncode(<String, String>{
+        'name': title.split(' ')[1] + name,
+        'email': email,
+        'phoneNumber': phoneNumber,
+        'nic': nic,
+        'password': password,
+        'country': country,
+        'gender': gender.split(' ')[1],
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      notifyListeners();
+      Fluttertoast.showToast(
+        msg: 'Create account success',
+      );
+      Navigator.pushNamed(context, '/home');
+    } else {
+      notifyListeners();
+      Fluttertoast.showToast(
+        msg: 'Problem with creating account',
+      );
+    }
   }
 }

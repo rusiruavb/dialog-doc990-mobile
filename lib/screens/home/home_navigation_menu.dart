@@ -61,7 +61,7 @@ class HomeNavigationMenu extends StatelessWidget {
           buildMenuItem(
             icon: Icons.person,
             text: 'My Profile',
-            onClicked: () => Navigator.pushNamed(context, '/home'),
+            onClicked: () => Navigator.pushNamed(context, '/profile'),
             isNotificationIndicator: false,
           ),
           buildMenuItem(

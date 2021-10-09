@@ -61,13 +61,13 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
                   route: '/bank-refund',
                 ),
                 ServiceCard(
-                  image: 'assets/images/medicine.png',
-                  title: 'My Medicines',
+                  image: 'assets/images/money_refund.png',
+                  title: 'Refunds',
                   route: '/',
                 ),
                 ServiceCard(
-                  image: 'assets/images/money_refund.png',
-                  title: 'Refunds',
+                  image: 'assets/images/medicine.png',
+                  title: 'My Medicines',
                   route: '/',
                 ),
               ],
