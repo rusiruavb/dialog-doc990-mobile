@@ -33,7 +33,7 @@ class _AppointmentPaymentScreenState extends State<AppointmentPaymentScreen> {
         children: <Widget>[
           SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.only(top: 100, left: 10),
+              padding: const EdgeInsets.only(top: 90, left: 10),
               child: AppointmentPaymentContent(),
             ),
           ),
