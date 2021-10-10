@@ -1,5 +1,7 @@
+import 'package:dialog_doc990_mobile/providers/appointment_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreenServiceContent extends StatefulWidget {
   final Widget child;
@@ -17,8 +19,11 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
   final Widget child;
 
   @override
-  void initialState() {
+  void initState() {
     super.initState();
+    final appointmentProvider =
+        Provider.of<AppointmentProvider>(context, listen: false);
+    appointmentProvider.getUserAppointments();
   }
 
   _HomeScreenServiceContentState({

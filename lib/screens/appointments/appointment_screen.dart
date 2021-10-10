@@ -1,17 +1,13 @@
-import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
-import 'package:dialog_doc990_mobile/screens/channel_doctor/search_doctor_form.dart';
-import 'package:dialog_doc990_mobile/screens/channel_doctor/search_doctors.dart';
+import 'package:dialog_doc990_mobile/screens/appointments/appointment_content.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_navigation_menu.dart';
-import 'package:dialog_doc990_mobile/screens/profile/profile_content.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class UserProfile extends StatefulWidget {
+class AppointmentScreen extends StatefulWidget {
   @override
-  _UserProfileState createState() => _UserProfileState();
+  _AppointmentScreenState createState() => _AppointmentScreenState();
 }
 
-class _UserProfileState extends State<UserProfile> {
+class _AppointmentScreenState extends State<AppointmentScreen> {
   final _scaffoldKey =
       GlobalKey<ScaffoldState>(debugLabel: 'channelDoctorScreenKey');
 
@@ -22,7 +18,7 @@ class _UserProfileState extends State<UserProfile> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: Container(
-        width: size.width * 0.8,
+        width: size.width * 0.7,
         child: Drawer(
           elevation: 0.0,
           child: HomeNavigationMenu(),
@@ -32,9 +28,13 @@ class _UserProfileState extends State<UserProfile> {
         children: <Widget>[
           SingleChildScrollView(
             child: Container(
-              child: Padding(
-                padding: EdgeInsets.only(top: 100),
-                child: ProfileContent(),
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: AppointmentContent(),
+                  ),
+                ],
               ),
             ),
           ),
@@ -56,13 +56,13 @@ class _UserProfileState extends State<UserProfile> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 45, left: 150),
+                  padding: EdgeInsets.only(top: 44, left: 130),
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'My Profile',
+                          'Appointments',
                           style: TextStyle(
                             fontFamily: 'Larsseit',
                             fontSize: 20,

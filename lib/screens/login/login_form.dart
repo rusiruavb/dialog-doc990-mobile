@@ -1,8 +1,10 @@
 import 'package:dialog_doc990_mobile/components/common/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/common/rounded_input_field.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
+import 'package:dialog_doc990_mobile/providers/user_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -21,13 +23,16 @@ class _LoginFormState extends State<LoginForm> {
 
   void submitForm() {
     if (_formKey.currentState.validate()) {
-      print('Sign Up clicked ' + phoneNumber + ' ' + password);
+      final provider = context.read<UserProvider>();
+      provider.loginAccount(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final provider = context.read<UserProvider>();
+
     return Container(
       key: WidgetKeys.loginFormKey,
       height: size.height * 0.5,
@@ -47,7 +52,7 @@ class _LoginFormState extends State<LoginForm> {
                 text: 'Phone Number',
                 icon: Icons.phone,
                 onChange: (text) {
-                  phoneNumber = text;
+                  provider.phoneNumber = text;
                 },
               ),
               RoundedTextFeild(
@@ -58,7 +63,7 @@ class _LoginFormState extends State<LoginForm> {
                 icon: Icons.password,
                 text: 'Password',
                 onChange: (text) {
-                  password = text;
+                  provider.password = text;
                 },
               ),
               SizedBox(

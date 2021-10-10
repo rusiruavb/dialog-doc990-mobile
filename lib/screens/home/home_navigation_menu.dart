@@ -1,8 +1,35 @@
 import 'package:dialog_doc990_mobile/constants.dart';
+import 'package:dialog_doc990_mobile/models/user_model.dart';
+import 'package:dialog_doc990_mobile/providers/appointment_provider.dart';
+import 'package:dialog_doc990_mobile/providers/user_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
-class HomeNavigationMenu extends StatelessWidget {
+class HomeNavigationMenu extends StatefulWidget {
+  @override
+  _HomeNavigationMenuState createState() => _HomeNavigationMenuState();
+}
+
+class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
+  Future<UserModel> profileInfo;
+  int noOfAppointments = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    int appointments = 0;
+    final provider = Provider.of<UserProvider>(context, listen: false);
+    final appointmentProvider =
+        Provider.of<AppointmentProvider>(context, listen: false);
+
+    profileInfo = provider.getUserProfile();
+
+    noOfAppointments = appointmentProvider.noOfAppointments;
+    print(noOfAppointments);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -10,36 +37,49 @@ class HomeNavigationMenu extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.only(left: 0, top: 20),
         children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: Text(
-              'Nimal Perera',
-              style: TextStyle(
-                fontFamily: FONT_FAMILY_PRIMARY,
-                fontSize: 18,
-              ),
-            ),
-            accountEmail: Text('nimal89@gmail.com'),
-            currentAccountPicture: CircleAvatar(
-              child: ClipOval(
-                child: Image.network(
-                  'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                  width: 90,
-                  height: 90,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(1),
-                  BlendMode.dstATop,
-                ),
-                image: AssetImage('assets/images/header_background.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
+          profileInfo != null
+              ? FutureBuilder<UserModel>(
+                  future: profileInfo,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return UserAccountsDrawerHeader(
+                        accountName: Text(
+                          snapshot.data.name,
+                          style: TextStyle(
+                            fontFamily: FONT_FAMILY_PRIMARY,
+                            fontSize: 18,
+                          ),
+                        ),
+                        accountEmail: Text(snapshot.data.email),
+                        currentAccountPicture: CircleAvatar(
+                          child: ClipOval(
+                            child: Image.network(
+                              snapshot.data.imageUrl,
+                              width: 90,
+                              height: 90,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(1),
+                              BlendMode.dstATop,
+                            ),
+                            image: AssetImage(
+                                'assets/images/header_background.jpg'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      Fluttertoast.showToast(msg: snapshot.error.toString());
+                    }
+                    return Text('');
+                  },
+                )
+              : Text(''),
           Padding(
             padding: const EdgeInsets.only(left: 16, top: 10),
             child: Text(
@@ -73,8 +113,9 @@ class HomeNavigationMenu extends StatelessWidget {
           buildMenuItem(
             icon: Icons.favorite,
             text: 'My Channelings',
-            onClicked: () => Navigator.pushNamed(context, '/home'),
+            onClicked: () => Navigator.pushNamed(context, '/appointments'),
             isNotificationIndicator: true,
+            noOfItems: noOfAppointments,
           ),
           buildMenuItem(
             icon: Icons.sync,
@@ -110,7 +151,9 @@ class HomeNavigationMenu extends StatelessWidget {
           buildMenuItem(
             icon: Icons.exit_to_app,
             text: 'Logout',
-            onClicked: () => Navigator.pushNamed(context, '/home'),
+            onClicked: () {
+              context.read<UserProvider>().logoutAccount(context);
+            },
             isNotificationIndicator: false,
           ),
           Divider(),
@@ -155,11 +198,13 @@ class HomeNavigationMenu extends StatelessWidget {
     );
   }
 
-  Widget buildMenuItem(
-      {String text,
-      IconData icon,
-      VoidCallback onClicked,
-      bool isNotificationIndicator}) {
+  Widget buildMenuItem({
+    String text,
+    IconData icon,
+    VoidCallback onClicked,
+    bool isNotificationIndicator,
+    int noOfItems,
+  }) {
     return ListTile(
       leading: Icon(
         icon,
@@ -182,7 +227,7 @@ class HomeNavigationMenu extends StatelessWidget {
                 height: 20,
                 child: Center(
                   child: Text(
-                    '4',
+                    noOfItems.toString(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 12,

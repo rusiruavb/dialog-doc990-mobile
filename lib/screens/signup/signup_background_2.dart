@@ -19,7 +19,7 @@ class SignUpBackground2 extends StatelessWidget {
       child: SingleChildScrollView(
         child: Container(
           key: WidgetKeys.signUpScreenBackground2Key,
-          height: size.height * 1.11,
+          height: size.height * 1.25,
           width: size.width,
           child: Stack(
             children: <Widget>[

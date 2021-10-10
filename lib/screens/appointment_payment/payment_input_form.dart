@@ -29,18 +29,12 @@ class _CardDataInputFomrState extends State<CardInputForm> {
     if (_cardInputFormKey.currentState.validate()) {
       final paymentProvider = context.read<PaymentProvider>();
       final appointmentProvider = context.read<AppointmentProvider>();
-      double price = appointmentProvider.totalPrice;
       String cardNumber = paymentProvider.enteredCardNumber;
       String cvc = paymentProvider.enteredCVC;
-      String expireDate = paymentProvider.enteredExpireDate.split('/')[0];
-      String expireYear = paymentProvider.enteredExpireDate.split('/')[1];
+      String expireDate = paymentProvider.enteredExpireDate;
 
-      if (price != null &&
-          cardNumber != null &&
-          cvc != null &&
-          expireDate != null &&
-          expireYear != null) {
-        // create payment logic
+      if (cardNumber != null && cvc != null && expireDate != null) {
+        context.read<AppointmentProvider>().createAppointment(context);
       } else {
         Fluttertoast.showToast(
           msg: 'Pelase input required data',

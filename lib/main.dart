@@ -1,7 +1,7 @@
 import 'package:dialog_doc990_mobile/providers/appointment_provider.dart';
 import 'package:dialog_doc990_mobile/providers/payment_provider.dart';
 import 'package:dialog_doc990_mobile/providers/search_doctor_provider.dart';
-import 'package:dialog_doc990_mobile/providers/sign_up_provider.dart';
+import 'package:dialog_doc990_mobile/providers/user_provider.dart';
 import 'package:dialog_doc990_mobile/route_generator.dart';
 import 'package:dialog_doc990_mobile/screens/home/home_screen.dart';
 import 'package:dialog_doc990_mobile/screens/welcome/welcome_screen.dart';
@@ -14,7 +14,7 @@ import 'constants.dart';
 void main() => runApp(
       MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => SignUpProvider()),
+          ChangeNotifierProvider(create: (_) => UserProvider()),
           ChangeNotifierProvider(create: (_) => SearchDoctorProvider()),
           ChangeNotifierProvider(create: (_) => AppointmentProvider()),
           ChangeNotifierProvider(create: (_) => PaymentProvider()),

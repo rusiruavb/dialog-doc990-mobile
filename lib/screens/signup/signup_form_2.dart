@@ -5,7 +5,7 @@ import 'package:dialog_doc990_mobile/components/common/rounded_dropdown_feild.da
 import 'package:dialog_doc990_mobile/components/common/rounded_input_field.dart';
 import 'package:dialog_doc990_mobile/components/common/rounded_loading_button.dart';
 import 'package:dialog_doc990_mobile/constants.dart';
-import 'package:dialog_doc990_mobile/providers/sign_up_provider.dart';
+import 'package:dialog_doc990_mobile/providers/user_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
 
   void validateAndSubmitForm() {
     if (_signUpForm2Key.currentState.validate()) {
-      final provider = context.read<SignUpProvider>();
+      final provider = context.read<UserProvider>();
       // send data to backend
       provider.createUserAccount(context);
 
@@ -36,9 +36,10 @@ class _SignUpForm2State extends State<SignUpForm2> {
         title: 'Hi, ${provider.name}',
         body: 'Your account has been created sucessfully.',
       );
-      // navigate to the home screen
+
       // reset sign up state values
-      context.read<SignUpProvider>().resetValues();
+      context.read<UserProvider>().resetValues();
+      // navigate to the home screen
       Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
     }
   }
@@ -46,7 +47,7 @@ class _SignUpForm2State extends State<SignUpForm2> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final userProvider = context.read<SignUpProvider>();
+    final userProvider = context.read<UserProvider>();
 
     return Container(
       key: WidgetKeys.signUpForm2Key,
