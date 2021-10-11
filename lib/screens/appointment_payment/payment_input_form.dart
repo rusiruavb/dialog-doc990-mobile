@@ -33,7 +33,10 @@ class _CardDataInputFomrState extends State<CardInputForm> {
       String cvc = paymentProvider.enteredCVC;
       String expireDate = paymentProvider.enteredExpireDate;
 
-      if (cardNumber != null && cvc != null && expireDate != null) {
+      if (cardNumber != null &&
+          cvc != null &&
+          expireDate != null &&
+          paymentProvider.cardHolderName != null) {
         context.read<AppointmentProvider>().createAppointment(context);
       } else {
         Fluttertoast.showToast(

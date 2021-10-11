@@ -30,7 +30,7 @@ class _AppointmentContentState extends State<AppointmentContent> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Container(
-                  height: size.height * 0.9,
+                  height: size.height * 0.866,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -47,7 +47,7 @@ class _AppointmentContentState extends State<AppointmentContent> {
                       ),
                       Expanded(
                         child: ListView.builder(
-                          padding: EdgeInsets.only(top: 0),
+                          padding: EdgeInsets.only(top: 0, bottom: 10),
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context, int index) {
                             return AppointmentCard(
