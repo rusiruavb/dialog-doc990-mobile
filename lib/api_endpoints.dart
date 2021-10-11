@@ -5,3 +5,5 @@ const LOGIN_USER_ACCOUNT = '$RootURLPath/user/login';
 const GET_USER_PROFILE = '$RootURLPath/user/';
 const CREATE_APPOINTMENT = '$RootURLPath/appointment/create';
 const GET_APPOINTMENTS = '$RootURLPath/appointment/';
+const CREATE_REFUND_REQUEST = '$RootURLPath/refund/create';
+const GET_REFUND_REQUESTS = '$RootURLPath/refund/';

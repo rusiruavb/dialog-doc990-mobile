@@ -1,6 +1,8 @@
+import 'package:dialog_doc990_mobile/providers/refund_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
-import 'package:dialog_doc990_mobile/screens/refund/mobile_refund.dart';
+import 'package:dialog_doc990_mobile/screens/refund_request/mobile_refund.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 import 'bank_refund.dart';
@@ -17,6 +19,7 @@ class _RefundPageState extends State<RefundPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final provider = context.read<RefundProvider>();
 
     return SingleChildScrollView(
       child: Container(
@@ -46,6 +49,8 @@ class _RefundPageState extends State<RefundPage> {
                             ? Color(COLOR_PRIMARY)
                             : Color(COLOR_SECONDARY),
                         onPressed: () {
+                          provider.isBankRefund = true;
+                          provider.isMobileRefund = false;
                           setState(() {
                             _isBankRefundClick = true;
                             _isMobileRefundClick = false;
@@ -79,6 +84,8 @@ class _RefundPageState extends State<RefundPage> {
                             ? Color(COLOR_PRIMARY)
                             : Color(COLOR_SECONDARY),
                         onPressed: () {
+                          provider.isBankRefund = false;
+                          provider.isMobileRefund = true;
                           setState(() {
                             _isMobileRefundClick = true;
                             _isBankRefundClick = false;

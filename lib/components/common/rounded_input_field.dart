@@ -93,8 +93,9 @@ class _RoundedTextFeildState extends State<RoundedTextFeild> {
               },
               obscureText: isPassword ? _isObscure : false,
               maxLength: isPhoneNumber ? 10 : 200,
-              keyboardType:
-                  isNumber ? TextInputType.number : TextInputType.text,
+              keyboardType: isNumber && isPhoneNumber
+                  ? TextInputType.phone
+                  : TextInputType.text,
               style: TextStyle(fontFamily: FONT_FAMILY_PRIMARY, fontSize: 18),
               onChanged: onChange,
               decoration: InputDecoration(

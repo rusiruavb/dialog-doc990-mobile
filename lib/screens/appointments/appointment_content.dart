@@ -57,6 +57,7 @@ class _AppointmentContentState extends State<AppointmentContent> {
                                   snapshot.data[index].specialization,
                               date: snapshot.data[index].date,
                               time: snapshot.data[index].time,
+                              referenceNo: snapshot.data[index].referenceNo,
                             );
                           },
                         ),
@@ -89,6 +90,7 @@ class AppointmentCard extends StatefulWidget {
   final String hospitalName;
   final DateTime date;
   final String time;
+  final String referenceNo;
 
   AppointmentCard({
     this.doctorName,
@@ -96,6 +98,7 @@ class AppointmentCard extends StatefulWidget {
     this.hospitalName,
     this.date,
     this.time,
+    this.referenceNo,
   });
 
   @override
@@ -105,6 +108,7 @@ class AppointmentCard extends StatefulWidget {
         specilization: specilization,
         date: date,
         time: time,
+        referenceNo: referenceNo,
       );
 }
 
@@ -114,6 +118,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
   final String hospitalName;
   final DateTime date;
   final String time;
+  final String referenceNo;
   String roomNo = '112';
 
   _AppointmentCardState({
@@ -122,6 +127,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
     this.hospitalName,
     this.date,
     this.time,
+    this.referenceNo,
   });
 
   @override
@@ -160,9 +166,19 @@ class _AppointmentCardState extends State<AppointmentCard> {
                 child: Column(
                   children: <Widget>[
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
                           'Dr. ' + doctorName,
+                          style: TextStyle(
+                            fontFamily: FONT_FAMILY_PRIMARY,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          '#' + referenceNo,
                           style: TextStyle(
                             fontFamily: FONT_FAMILY_PRIMARY,
                             fontSize: 20,

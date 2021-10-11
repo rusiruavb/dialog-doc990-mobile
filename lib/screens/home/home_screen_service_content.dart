@@ -1,4 +1,5 @@
 import 'package:dialog_doc990_mobile/providers/appointment_provider.dart';
+import 'package:dialog_doc990_mobile/providers/refund_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,9 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
     super.initState();
     final appointmentProvider =
         Provider.of<AppointmentProvider>(context, listen: false);
+    final refundProvider = Provider.of<RefundProvider>(context, listen: false);
     appointmentProvider.getUserAppointments();
+    refundProvider.getRefunds();
   }
 
   _HomeScreenServiceContentState({
@@ -63,18 +66,18 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
                 ServiceCard(
                   image: 'assets/images/user_channelling.png',
                   title: 'My Channels',
-                  route: '/bank-refund',
+                  route: '/appointments',
                 ),
                 ServiceCard(
                   image: 'assets/images/money_refund.png',
                   title: 'Refunds',
                   route: '/',
                 ),
-                ServiceCard(
-                  image: 'assets/images/medicine.png',
-                  title: 'My Medicines',
-                  route: '/',
-                ),
+                // ServiceCard(
+                //   image: 'assets/images/medicine.png',
+                //   title: 'My Medicines',
+                //   route: '/',
+                // ),
               ],
             ),
           ),

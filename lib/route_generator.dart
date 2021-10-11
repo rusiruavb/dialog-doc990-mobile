@@ -7,8 +7,8 @@ import 'package:dialog_doc990_mobile/screens/login/login_screen.dart';
 import 'package:dialog_doc990_mobile/screens/appointment_payment/appointment_payment_screen.dart';
 import 'package:dialog_doc990_mobile/screens/make_appointment/make_appointment_screen.dart';
 import 'package:dialog_doc990_mobile/screens/profile/profile_screen.dart';
-import 'package:dialog_doc990_mobile/screens/refund/refund_page.dart';
-import 'package:dialog_doc990_mobile/screens/refund/refund_screen.dart';
+import 'package:dialog_doc990_mobile/screens/refund_request/refund_screen.dart';
+import 'package:dialog_doc990_mobile/screens/refunds/refunds_screen.dart';
 import 'package:dialog_doc990_mobile/screens/signup/signup_screen_1.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -58,6 +58,15 @@ class RouteGenerator {
         return PageRouteBuilder(
           settings: settings,
           pageBuilder: (_, __, ___) => BankRefundScreen(),
+          transitionsBuilder: (_, a, __, c) => FadeTransition(
+            opacity: a,
+            child: c,
+          ),
+        );
+      case '/refund-screen':
+        return PageRouteBuilder(
+          settings: settings,
+          pageBuilder: (_, __, ___) => RefundScreen(),
           transitionsBuilder: (_, a, __, c) => FadeTransition(
             opacity: a,
             child: c,

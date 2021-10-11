@@ -1,20 +1,35 @@
 import 'package:dialog_doc990_mobile/components/common/rounded_button.dart';
 import 'package:dialog_doc990_mobile/components/common/rounded_input_field.dart';
-import 'package:dialog_doc990_mobile/components/refund/bank_branch_dropdown.dart';
-import 'package:dialog_doc990_mobile/components/refund/bank_dropdown.dart';
+import 'package:dialog_doc990_mobile/providers/refund_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants.dart';
 
-class BankRefundForm extends StatefulWidget {
+class MobileRefundForm extends StatefulWidget {
   @override
-  _BankRefundFormState createState() => _BankRefundFormState();
+  _MobileRefundFormState createState() => _MobileRefundFormState();
 }
 
-class _BankRefundFormState extends State<BankRefundForm> {
+class _MobileRefundFormState extends State<MobileRefundForm> {
+  void validateAndSubmit() {
+    final provider = context.read<RefundProvider>();
+
+    if (provider.isMobileRefund &&
+        provider.phoneNumber != null &&
+        provider.referenceNo != null &&
+        provider.refundRemarks != null) {
+      provider.createMobileRefund(context);
+    } else {
+      Fluttertoast.showToast(msg: 'Please enter required fields');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final provider = context.read<RefundProvider>();
 
     return Container(
       width: size.width,
@@ -38,48 +53,32 @@ class _BankRefundFormState extends State<BankRefundForm> {
                 text: 'Reference No.',
                 value: '',
                 onChange: (text) {
-                  print(text);
+                  provider.referenceNo = text;
                 },
               ),
               RoundedTextFeild(
                 isRequiredFeild: true,
                 isPassword: false,
-                isNumber: false,
-                isPhoneNumber: false,
-                icon: Icons.person,
-                text: 'Bank Account Holder Name',
+                isNumber: true,
+                isPhoneNumber: true,
+                icon: Icons.monetization_on,
+                text: 'Amount (Rs.)',
                 value: '',
                 onChange: (text) {
-                  print(text);
+                  provider.refundAmount = text;
                 },
               ),
               RoundedTextFeild(
                 isRequiredFeild: true,
                 isPassword: false,
-                isNumber: false,
-                isPhoneNumber: false,
-                icon: Icons.credit_card,
-                text: 'Bank Account No.',
+                isNumber: true,
+                isPhoneNumber: true,
+                icon: Icons.phone,
+                text: 'Mobile/ CDMA No.',
                 value: '',
                 onChange: (text) {
-                  print(text);
+                  provider.phoneNumber = text;
                 },
-              ),
-              RoundedBankDropDown(
-                isRequiredFeild: true,
-                text: 'Bank Name',
-                onChange: (value) {
-                  print(value);
-                },
-                value: '',
-              ),
-              RoundedBranchDropdown(
-                isRequiredFeild: true,
-                text: 'Branch Name',
-                onChange: (value) {
-                  print(value);
-                },
-                value: '',
               ),
               RoundedTextFeild(
                 isRequiredFeild: true,
@@ -90,7 +89,7 @@ class _BankRefundFormState extends State<BankRefundForm> {
                 text: 'Refund Remarks',
                 value: '',
                 onChange: (text) {
-                  print(text);
+                  provider.refundRemarks = text;
                 },
               ),
               Row(
@@ -102,12 +101,15 @@ class _BankRefundFormState extends State<BankRefundForm> {
                       text: 'CANCEL',
                       color: Color(COLOR_SECONDARY),
                       textColor: Colors.black,
-                      fontSize: 15,
                       action: () {
-                        print('object');
+                        provider.resetRefundState();
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/home', (route) => false);
                       },
                       height: 50,
+                      fontSize: 15,
                       width: size.width * 0.4,
+                      icon: Icons.send,
                     ),
                   ),
                   Padding(
@@ -116,12 +118,11 @@ class _BankRefundFormState extends State<BankRefundForm> {
                       text: 'SUBMIT',
                       color: Color(COLOR_PRIMARY),
                       textColor: Colors.white,
-                      action: () {
-                        print('object');
-                      },
+                      action: validateAndSubmit,
                       height: 50,
                       fontSize: 15,
                       width: size.width * 0.4,
+                      icon: Icons.send,
                     ),
                   ),
                 ],

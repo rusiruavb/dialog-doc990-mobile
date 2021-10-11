@@ -1,6 +1,7 @@
 import 'package:dialog_doc990_mobile/constants.dart';
 import 'package:dialog_doc990_mobile/models/user_model.dart';
 import 'package:dialog_doc990_mobile/providers/appointment_provider.dart';
+import 'package:dialog_doc990_mobile/providers/refund_provider.dart';
 import 'package:dialog_doc990_mobile/providers/user_provider.dart';
 import 'package:dialog_doc990_mobile/screen_keys.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class HomeNavigationMenu extends StatefulWidget {
 class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
   Future<UserModel> profileInfo;
   int noOfAppointments = 0;
+  int noOfRefunds = 0;
 
   @override
   void initState() {
@@ -23,11 +25,13 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
     final provider = Provider.of<UserProvider>(context, listen: false);
     final appointmentProvider =
         Provider.of<AppointmentProvider>(context, listen: false);
+    final refundProvider = Provider.of<RefundProvider>(context, listen: false);
 
     profileInfo = provider.getUserProfile();
 
     noOfAppointments = appointmentProvider.noOfAppointments;
-    print(noOfAppointments);
+    noOfRefunds = refundProvider.noOfRefunds;
+    print(noOfRefunds);
   }
 
   @override
@@ -118,10 +122,17 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
             noOfItems: noOfAppointments,
           ),
           buildMenuItem(
+            icon: Icons.refresh,
+            text: 'My Refunds',
+            onClicked: () => Navigator.pushNamed(context, '/refund-screen'),
+            isNotificationIndicator: true,
+            noOfItems: noOfRefunds,
+          ),
+          buildMenuItem(
             icon: Icons.sync,
             text: 'Refund Request',
             onClicked: () => Navigator.pushNamed(context, '/refund'),
-            isNotificationIndicator: true,
+            isNotificationIndicator: false,
           ),
           Divider(),
           Padding(
