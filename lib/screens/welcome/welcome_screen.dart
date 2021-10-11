@@ -1,15 +1,39 @@
 import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:dialog_doc990_mobile/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends StatefulWidget {
+  final Widget navigationPage;
+  final int duration;
+
+  WelcomeScreen({
+    this.duration,
+    this.navigationPage,
+  });
+
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState(
+        navigationPage: navigationPage,
+        duration: duration,
+      );
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
   final int duration;
   final Widget navigationPage;
 
-  WelcomeScreen({
+  _WelcomeScreenState({
     this.navigationPage,
     this.duration,
   });
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<UserProvider>().getUserProfile();
+  }
 
   @override
   Widget build(BuildContext context) {

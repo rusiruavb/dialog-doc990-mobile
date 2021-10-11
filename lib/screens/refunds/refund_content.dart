@@ -222,14 +222,23 @@ class _RefundState extends State<Refund> {
                             ),
                           ),
                         )
-                      : Badge(
-                          toAnimate: false,
-                          shape: BadgeShape.square,
-                          borderRadius: BorderRadius.circular(15),
-                          badgeColor: Color(COLOR_YELLOW),
-                          badgeContent: Text(
-                            status,
-                            style: TextStyle(fontFamily: FONT_FAMILY_PRIMARY),
+                      : Positioned(
+                          top: 40,
+                          right: 5,
+                          child: Badge(
+                            toAnimate: false,
+                            shape: BadgeShape.square,
+                            borderRadius: BorderRadius.circular(15),
+                            badgeColor: Color(COLOR_GREEN),
+                            elevation: 0,
+                            badgeContent: Text(
+                              status,
+                              style: TextStyle(
+                                fontFamily: FONT_FAMILY_PRIMARY,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
                   Padding(

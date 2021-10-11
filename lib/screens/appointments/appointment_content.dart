@@ -68,13 +68,18 @@ class _AppointmentContentState extends State<AppointmentContent> {
               } else if (snapshot.hasError) {
                 return Text('Error with getting Trip information');
               }
-              return Container(
-                width: 25,
-                height: 25,
-                child: CircularProgressIndicator(
-                  color: Color(COLOR_PRIMARY),
-                  strokeWidth: 3,
-                ),
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 25,
+                    height: 25,
+                    child: CircularProgressIndicator(
+                      color: Color(COLOR_PRIMARY),
+                      strokeWidth: 3,
+                    ),
+                  ),
+                ],
               );
             },
           ),
@@ -145,6 +150,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
       ),
       padding: EdgeInsets.all(5),
       child: Card(
+        color: Color(COLOR_SECONDARY),
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -152,15 +158,6 @@ class _AppointmentCardState extends State<AppointmentCard> {
         child: InkWell(
           child: Stack(
             children: [
-              Opacity(
-                opacity: 1,
-                child: Image.asset(
-                  'assets/images/appointment_background.png',
-                  fit: BoxFit.fill,
-                  scale: 0.2,
-                  height: 200,
-                ),
-              ),
               Padding(
                 padding: EdgeInsets.all(10),
                 child: Column(
@@ -174,7 +171,6 @@ class _AppointmentCardState extends State<AppointmentCard> {
                             fontFamily: FONT_FAMILY_PRIMARY,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
                           ),
                         ),
                         Text(
@@ -183,14 +179,13 @@ class _AppointmentCardState extends State<AppointmentCard> {
                             fontFamily: FONT_FAMILY_PRIMARY,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
                           ),
                         )
                       ],
                     ),
                     Divider(
                       thickness: 1,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     Row(
                       children: <Widget>[
@@ -199,7 +194,6 @@ class _AppointmentCardState extends State<AppointmentCard> {
                           style: TextStyle(
                             fontFamily: FONT_FAMILY_PRIMARY,
                             fontSize: 16,
-                            color: Colors.white,
                           ),
                         )
                       ],
@@ -211,7 +205,6 @@ class _AppointmentCardState extends State<AppointmentCard> {
                           style: TextStyle(
                             fontFamily: FONT_FAMILY_PRIMARY,
                             fontSize: 18,
-                            color: Colors.white,
                           ),
                         )
                       ],
@@ -223,7 +216,6 @@ class _AppointmentCardState extends State<AppointmentCard> {
                           style: TextStyle(
                             fontFamily: FONT_FAMILY_PRIMARY,
                             fontSize: 18,
-                            color: Colors.white,
                           ),
                         )
                       ],
@@ -235,7 +227,6 @@ class _AppointmentCardState extends State<AppointmentCard> {
                           style: TextStyle(
                             fontFamily: FONT_FAMILY_PRIMARY,
                             fontSize: 18,
-                            color: Colors.white,
                           ),
                         )
                       ],
@@ -245,7 +236,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                       children: <Widget>[
                         FlatButton(
                           onPressed: () {
-                            print('test');
+                            Navigator.pushNamed(context, '/refund');
                           },
                           child: Text(
                             'CANCEL APPOINTMENT & REFUND',

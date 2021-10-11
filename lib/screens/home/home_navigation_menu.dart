@@ -103,37 +103,45 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
             isNotificationIndicator: false,
           ),
           buildMenuItem(
-            icon: Icons.person,
-            text: 'My Profile',
-            onClicked: () => Navigator.pushNamed(context, '/profile'),
-            isNotificationIndicator: false,
-          ),
-          buildMenuItem(
             icon: Icons.search,
             text: 'Channel Doctor',
             onClicked: () => Navigator.pushNamed(context, '/channel-doctor'),
             isNotificationIndicator: false,
           ),
-          buildMenuItem(
-            icon: Icons.favorite,
-            text: 'My Channelings',
-            onClicked: () => Navigator.pushNamed(context, '/appointments'),
-            isNotificationIndicator: true,
-            noOfItems: noOfAppointments,
-          ),
-          buildMenuItem(
-            icon: Icons.refresh,
-            text: 'My Refunds',
-            onClicked: () => Navigator.pushNamed(context, '/refund-screen'),
-            isNotificationIndicator: true,
-            noOfItems: noOfRefunds,
-          ),
-          buildMenuItem(
-            icon: Icons.sync,
-            text: 'Refund Request',
-            onClicked: () => Navigator.pushNamed(context, '/refund'),
-            isNotificationIndicator: false,
-          ),
+          context.read<UserProvider>().getProfile() != null
+              ? Column(
+                  children: [
+                    buildMenuItem(
+                      icon: Icons.person,
+                      text: 'My Profile',
+                      onClicked: () => Navigator.pushNamed(context, '/profile'),
+                      isNotificationIndicator: false,
+                    ),
+                    buildMenuItem(
+                      icon: Icons.favorite,
+                      text: 'My Channelings',
+                      onClicked: () =>
+                          Navigator.pushNamed(context, '/appointments'),
+                      isNotificationIndicator: true,
+                      noOfItems: noOfAppointments,
+                    ),
+                    buildMenuItem(
+                      icon: Icons.refresh,
+                      text: 'My Refunds',
+                      onClicked: () =>
+                          Navigator.pushNamed(context, '/refund-screen'),
+                      isNotificationIndicator: true,
+                      noOfItems: noOfRefunds,
+                    ),
+                    buildMenuItem(
+                      icon: Icons.sync,
+                      text: 'Refund Request',
+                      onClicked: () => Navigator.pushNamed(context, '/refund'),
+                      isNotificationIndicator: false,
+                    ),
+                  ],
+                )
+              : Visibility(visible: false, child: Text('')),
           Divider(),
           Padding(
             padding: const EdgeInsets.only(left: 16, top: 10),
@@ -159,14 +167,19 @@ class _HomeNavigationMenuState extends State<HomeNavigationMenu> {
             onClicked: () => Navigator.pushNamed(context, '/login'),
             isNotificationIndicator: false,
           ),
-          buildMenuItem(
-            icon: Icons.exit_to_app,
-            text: 'Logout',
-            onClicked: () {
-              context.read<UserProvider>().logoutAccount(context);
-            },
-            isNotificationIndicator: false,
-          ),
+          context.read<UserProvider>().getProfile() != null
+              ? buildMenuItem(
+                  icon: Icons.exit_to_app,
+                  text: 'Logout',
+                  onClicked: () {
+                    context.read<UserProvider>().logoutAccount(context);
+                  },
+                  isNotificationIndicator: false,
+                )
+              : Visibility(
+                  child: Text(''),
+                  visible: false,
+                ),
           Divider(),
           Padding(
             padding: const EdgeInsets.only(left: 16, top: 10),

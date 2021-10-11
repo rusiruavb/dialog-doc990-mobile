@@ -17,6 +17,7 @@ class UserProvider with ChangeNotifier {
   String nic = '';
   String password = '';
   String gender = '';
+  String profileImage;
   UserModel userProfile;
   final storage = new FlutterSecureStorage();
 
@@ -127,6 +128,7 @@ class UserProvider with ChangeNotifier {
   void logoutAccount(BuildContext context) async {
     await storage.deleteAll();
     userProfile = null;
+    profileImage = null;
     Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
   }
 
@@ -143,6 +145,7 @@ class UserProvider with ChangeNotifier {
         notifyListeners();
         final data = jsonDecode(response.body);
         userProfile = new UserModel.fromJson(data);
+        profileImage = userProfile.imageUrl;
         return userProfile;
       } else if (response.statusCode == 500) {
         Fluttertoast.showToast(

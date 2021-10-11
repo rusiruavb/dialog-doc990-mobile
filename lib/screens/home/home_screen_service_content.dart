@@ -71,7 +71,7 @@ class _HomeScreenServiceContentState extends State<HomeScreenServiceContent> {
                 ServiceCard(
                   image: 'assets/images/money_refund.png',
                   title: 'Refunds',
-                  route: '/',
+                  route: '/refund-screen',
                 ),
                 // ServiceCard(
                 //   image: 'assets/images/medicine.png',
